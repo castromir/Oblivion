@@ -15,4 +15,3 @@ MonoBehaviour:
   nome: Teleporte
   tempoRecarga: 2
   tempoDuracao: 0.25
-  teleporteVelocidade: 50

@@ -203,6 +203,7 @@ GameObject:
   - component: {fileID: 2079923368}
   - component: {fileID: 2079923369}
   - component: {fileID: 4520690331217355740}
+  - component: {fileID: 797173092796305011}
   m_Layer: 0
   m_Name: Player_Isometric_Witch
   m_TagString: Untagged
@@ -285,3 +286,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   feitico: {fileID: 11400000, guid: 59f5f01a65528f04b85f243e1bb1a24d, type: 2}
   atalho: 32
+--- !u!114 &797173092796305011
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3339481645408498929}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 304b6ede6f1f42b4eacf1bfb62b367f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
