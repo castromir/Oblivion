@@ -35,7 +35,7 @@ public class GuardaFeitico : MonoBehaviour
                 {
                     tempoDuracao -= Time.deltaTime;
                 }
-                else 
+                else
                 {
                     feitico.RecargaComecar(gameObject);
                     estado = FeiticoEstado.recarga;
@@ -43,7 +43,7 @@ public class GuardaFeitico : MonoBehaviour
                 }
                 break;
             case FeiticoEstado.recarga:
-                if (tempoRecarga > 0) 
+                if (tempoRecarga > 0)
                 {
                     tempoRecarga -= Time.deltaTime;
                 }
@@ -51,7 +51,7 @@ public class GuardaFeitico : MonoBehaviour
                 {
                     estado = FeiticoEstado.pronto;
                 }
-                break;        
+                break;
         }
     }
 }
