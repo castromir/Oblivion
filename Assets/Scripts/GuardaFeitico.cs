@@ -17,7 +17,7 @@ public class GuardaFeitico : MonoBehaviour
     FeiticoEstado estado = FeiticoEstado.ativo;
 
     public KeyCode atalho;
-    
+
     void Update()
     {
         switch (estado)
