@@ -6,8 +6,8 @@ using UnityEngine;
 public class IsometricCharacterRenderer : MonoBehaviour
 {
 
-    public static readonly string[] staticDirections = { "Static N", "Static NW", "Static W", "Static SW", "Static S", "Static SE", "Static E", "Static NE" };
-    public static readonly string[] runDirections = {"Run N", "Run NW", "Run W", "Run SW", "Run S", "Run SE", "Run E", "Run NE"};
+    public static readonly string[] staticDirections = { "Estatico N", "Estatico NO", "Estatico O", "Estatico SO", "Estatico S", "Estatico SL", "Estatico L", "Estatico NL" };
+    public static readonly string[] runDirections = {"Andar N", "Andar NO", "Andar O", "Andar SO", "Andar S", "Andar SL", "Andar L", "Andar NL" };
 
     Animator animator;
     int lastDirection;

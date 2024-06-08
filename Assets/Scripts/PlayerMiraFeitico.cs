@@ -10,6 +10,7 @@ public class PlayerMiraFeitico : MonoBehaviour
     {
         public Vector3 posicaoPontaLivro;
         public Vector3 posicaoDisparo;
+        public GameObject objetoAcertado;
     }
 
     private Transform miraTransformar;
@@ -80,4 +81,13 @@ public class PlayerMiraFeitico : MonoBehaviour
         }
        
     }
+    /*if (e.hitObject != null) {
+            Enemy enemy = e.hitObject.GetComponent<Enemy>();
+            if (enemy != null) {
+                enemy.Damage(this, weapon.GetDamageMultiplier());
+            }
+            ShieldFieldTransformer shieldFieldTransformer = e.hitObject.GetComponent<ShieldFieldTransformer>();
+            if (shieldFieldTransformer != null) {
+                shieldFieldTransformer.Damage(this, weapon.GetDamageMultiplier());
+            }*/
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class VidaDisplay : MonoBehaviour
+public class PlayerVidaDisplay : MonoBehaviour
 {
     public int vidaAtual;
     public int vidaMaxima;

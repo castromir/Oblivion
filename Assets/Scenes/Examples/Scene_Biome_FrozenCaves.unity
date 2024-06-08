@@ -1596,7 +1596,7 @@ PrefabInstance:
     - target: {fileID: 8422213676754690966, guid: a715e6498a8f8444e8af75aa518ea006,
         type: 3}
       propertyPath: m_CropFrameX
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8422213676754690966, guid: a715e6498a8f8444e8af75aa518ea006,
         type: 3}
@@ -5831,9 +5831,11 @@ GameObject:
   - component: {fileID: 622907427}
   - component: {fileID: 622907428}
   - component: {fileID: 622907429}
+  - component: {fileID: 622907430}
+  - component: {fileID: 622907431}
   m_Layer: 0
   m_Name: BossFelicidade
-  m_TagString: Untagged
+  m_TagString: Alvo
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5910,7 +5912,7 @@ SpriteRenderer:
   m_SortingLayerID: 2130146985
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 1e5aa0f57c12c83429060b3d1714fa52, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c3f6b6faaa730964a8c12d3bdc0621dc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -5929,8 +5931,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 622907422}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.29, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 5.98, y: -1.31, z: 0}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 4
@@ -5948,8 +5950,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.036258936, y: 0}
-  m_Size: {x: 1.0725179, y: 1.0725179}
+  m_Offset: {x: -0.006000519, y: 0}
+  m_Size: {x: 1.0999889, y: 1.28}
   m_Direction: 0
 --- !u!50 &622907428
 Rigidbody2D:
@@ -5959,7 +5961,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 622907422}
-  m_BodyType: 0
+  m_BodyType: 2
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -5985,6 +5987,35 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerVida: {fileID: 164004490}
+--- !u!114 &622907430
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 622907422}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0a8780c8c55d0e428dd815ada046cb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &622907431
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 622907422}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8c50df051425b740bfe7419529601ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vidaMaxima: 100
+  vidaAtual: 0
+  icone: {fileID: 21300000, guid: 34ca1d692c170824d8d05d9f6bfeb84f, type: 3}
+  bossSR: {fileID: 622907425}
+  bossMovimento: {fileID: 622907424}
 --- !u!1001 &703501408
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6145,7 +6176,7 @@ PrefabInstance:
     - target: {fileID: 3339481645408498929, guid: 5e2a82902b6ea4c0b9b652322ffadcff,
         type: 3}
       propertyPath: m_Name
-      value: Player_Isometric_Witch
+      value: Player Mago
       objectReference: {fileID: 0}
     - target: {fileID: 3339481645408498929, guid: 5e2a82902b6ea4c0b9b652322ffadcff,
         type: 3}
@@ -6158,6 +6189,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 59f5f01a65528f04b85f243e1bb1a24d,
         type: 2}
+    - target: {fileID: 3339481644051735614, guid: 5e2a82902b6ea4c0b9b652322ffadcff,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 1e12903cc14152a4cad1e6458444a8a4,
+        type: 3}
     - target: {fileID: 3339481645408498932, guid: 5e2a82902b6ea4c0b9b652322ffadcff,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6217,6 +6254,41 @@ PrefabInstance:
         type: 3}
       propertyPath: atalho
       value: 32
+      objectReference: {fileID: 0}
+    - target: {fileID: 3339481643503506217, guid: 5e2a82902b6ea4c0b9b652322ffadcff,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.035
+      objectReference: {fileID: 0}
+    - target: {fileID: 3339481643503506217, guid: 5e2a82902b6ea4c0b9b652322ffadcff,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 3339481645326394338, guid: 5e2a82902b6ea4c0b9b652322ffadcff,
+        type: 3}
+      propertyPath: m_Name
+      value: Mago
+      objectReference: {fileID: 0}
+    - target: {fileID: 3339481644051735611, guid: 5e2a82902b6ea4c0b9b652322ffadcff,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 3339481644051735611, guid: 5e2a82902b6ea4c0b9b652322ffadcff,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 3339481644051735611, guid: 5e2a82902b6ea4c0b9b652322ffadcff,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 3339481644051735610, guid: 5e2a82902b6ea4c0b9b652322ffadcff,
+        type: 3}
+      propertyPath: m_Name
+      value: MagoRenderizador
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5e2a82902b6ea4c0b9b652322ffadcff, type: 3}
@@ -13044,12 +13116,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1881823076}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c450393e33f97d54c89dda2f1f6dd5d1, type: 3}
+  m_Script: {fileID: 11500000, guid: d4fef575e3bcb0e49a8b34e8c1acf5f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   playerMiraFeitico: {fileID: 164004488}
   marcadorFeiticoMaterial: {fileID: 2100000, guid: 45eec8f216810114d91275e1a143736a,
     type: 2}
+  dano: 10
 --- !u!4 &1881823078
 Transform:
   m_ObjectHideFlags: 0
@@ -13602,6 +13675,15 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 432038085, guid: 3d294861bd31da14d8c761c3bdf83997, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 4b79d49157804e54d900da69eae57fee,
+        type: 3}
+    - target: {fileID: 432038085, guid: 3d294861bd31da14d8c761c3bdf83997, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3475064813510686079, guid: 3d294861bd31da14d8c761c3bdf83997,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -13680,15 +13762,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 220367575, guid: 3d294861bd31da14d8c761c3bdf83997, type: 3}
       propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 432038085, guid: 3d294861bd31da14d8c761c3bdf83997, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 4b79d49157804e54d900da69eae57fee,
-        type: 3}
-    - target: {fileID: 432038085, guid: 3d294861bd31da14d8c761c3bdf83997, type: 3}
-      propertyPath: m_WasSpriteAssigned
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
