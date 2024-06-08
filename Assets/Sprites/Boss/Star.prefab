@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 6489792166441828324}
   - component: {fileID: 6090442289080585780}
   - component: {fileID: 2809780769155216772}
+  - component: {fileID: 2201231730831024067}
+  - component: {fileID: 3317631839619923746}
   m_Layer: 0
   m_Name: Star
   m_TagString: Untagged
@@ -95,3 +97,41 @@ MonoBehaviour:
   moveSpeed: 10
   powers: {fileID: 0}
   mark: {fileID: 8101323634358927485, guid: b14f761ee386be84094d0d44d22cfa58, type: 3}
+  playerVida: {fileID: 0}
+--- !u!58 &2201231730831024067
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5573506085644976}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
+--- !u!50 &3317631839619923746
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5573506085644976}
+  m_BodyType: 2
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0

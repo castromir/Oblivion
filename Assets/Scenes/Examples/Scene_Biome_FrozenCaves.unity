@@ -5857,7 +5857,7 @@ MonoBehaviour:
   compensarCamera: 10
   lowestPoit: -0.5
   highestPoit: 0.5
-  dashSpeed: 5
+  dashSpeed: 0
 --- !u!114 &622907424
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6013,7 +6013,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   vidaMaxima: 100
   vidaAtual: 0
-  icone: {fileID: 21300000, guid: 34ca1d692c170824d8d05d9f6bfeb84f, type: 3}
   bossSR: {fileID: 622907425}
   bossMovimento: {fileID: 622907424}
 --- !u!1001 &703501408
