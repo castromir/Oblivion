@@ -5,9 +5,17 @@ using UnityEngine.UI;
 
 public class BossVidaDisplay : MonoBehaviour
 {
-    private int vidaMaxima;
-    private int vidaAtual;
+    public Slider barraVida;
+    public BossVida bossVida;
 
-    public Image iconeImagem;
-    public Sprite icone;
+    void Start()
+    {
+        barraVida.maxValue = bossVida.GetVidaMaxima();
+        barraVida.value = bossVida.vidaAtual;
+    }
+
+    void Update()
+    {
+        barraVida.value = bossVida.vidaAtual;
+    }
 }

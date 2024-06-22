@@ -11,4 +11,8 @@ public class Player : MonoBehaviour
     private Feiticos Teleporte;
     private Feiticos DisparoArcano;
 
+    public Vector3 RetornarPosicao()
+    {
+        return transform.position;
+    }
 }

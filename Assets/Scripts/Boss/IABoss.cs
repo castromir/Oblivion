@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using System.Threading;
 using UnityEngine;
 
 public class IABoss : MonoBehaviour
@@ -15,13 +14,11 @@ public class IABoss : MonoBehaviour
     private float timer = 0f;
     public float dashDistance;
 
-    // Start is called before the first frame update
     void Start()
     {
         powers = GetComponent<Powers>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         distance = Vector2.Distance(transform.position, player.transform.position);
@@ -29,8 +26,7 @@ public class IABoss : MonoBehaviour
         direction.Normalize();
         if (distance < acceptableDistance)
         {
-            transform.position = Vector2.MoveTowards(this.transform.position, player.transform.position, speed * Time.deltaTime);
-
+            MoverParaPosicao(player.transform.position, speed);
             timer += Time.deltaTime;
             if (timer > timerDistance)
             {
@@ -38,13 +34,14 @@ public class IABoss : MonoBehaviour
                 timer = 0f;
             }
         }
-        if (distance < dashDistance) 
+        if (distance < dashDistance)
         {
-            
             powers.DashAtacck();
-            
         }
     }
 
-
+    public void MoverParaPosicao(Vector3 targetPosition, float velocidade)
+    {
+        transform.position = Vector2.MoveTowards(this.transform.position, targetPosition, velocidade * Time.deltaTime);
+    }
 }
