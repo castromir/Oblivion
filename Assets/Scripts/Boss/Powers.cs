@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR;
 
 public class Powers : MonoBehaviour
 {
@@ -25,16 +26,9 @@ public class Powers : MonoBehaviour
 
 
     }
-    
+
     //Relacionados ao ataque de chegar perto
-   
-    public float dashSpeed;
-    public void DashAtacck()
-    {
-        
 
-        transform.position = Vector2.MoveTowards(this.transform.position, player.transform.position, dashSpeed * Time.deltaTime);
-
-    }
+    
     
 }

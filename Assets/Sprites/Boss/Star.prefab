@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3317631839619923746}
   m_Layer: 0
   m_Name: Star
-  m_TagString: Untagged
+  m_TagString: Star
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -98,6 +98,7 @@ MonoBehaviour:
   powers: {fileID: 0}
   mark: {fileID: 8101323634358927485, guid: b14f761ee386be84094d0d44d22cfa58, type: 3}
   playerVida: {fileID: 0}
+  damageDistance: 0.4
 --- !u!58 &2201231730831024067
 CircleCollider2D:
   m_ObjectHideFlags: 0

@@ -4,8 +4,21 @@ using UnityEngine;
 
 public class MarkScript : MonoBehaviour
 {
-    public void detroyMark()
+    /**void OnTriggerEnter2D(Collider2D collision)
     {
-        Destroy(gameObject);
+        if (collision.gameObject.CompareTag("Star"))
+        {
+            //isOnGoud = true;
+            Debug.Log("ta no chao MARCA");
+        }
+
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            //playerVida.ReceberDano();
+            Debug.Log("ta escostando MARCA");
+        }
+
+
     }
+    **/
 }

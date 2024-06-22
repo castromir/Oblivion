@@ -11,6 +11,8 @@ public class StarScript : MonoBehaviour
     public GameObject mark;
     public PlayerVida playerVida;
     private bool isOnGoud;
+    public float damageDistance;
+    private bool canDamage = true;
 
     void Start()
     {
@@ -37,23 +39,20 @@ public class StarScript : MonoBehaviour
             Destroy(gameObject);
             Destroy(markStar);
         }
-    }
-    void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("Mark"))
+        if(transform.position.y < inicio - powers.compensarCamera + damageDistance)
         {
             isOnGoud = true;
-            Debug.Log("ta no chao");
         }
-        
-
     }
-    void OnCollisionEnter2D(Collision2D collision)
+    void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player") && isOnGoud && canDamage)
         {
             playerVida.ReceberDano();
-            Debug.Log("ta escostando");
+            Debug.Log("Star Damage!");
+            canDamage = false;
         }
+
+
     }
 }
