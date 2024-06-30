@@ -7,6 +7,7 @@ TagManager:
   - Alvo
   - Mark
   - Star
+  - Parede
   layers:
   - Default
   - TransparentFX
