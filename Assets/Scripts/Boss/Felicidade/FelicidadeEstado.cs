@@ -7,7 +7,12 @@ public class FelicidadeEstado : MonoBehaviour
 {
     private IABoss felicidade;
     private GameObject player;
-    private BossVida bossVida; // Referência ao BossVida
+    private BossVida bossVida;
+
+    public SpriteRenderer bossSR;
+    public Color avisoCor = Color.red;
+    public float avisoDuracao = 1f;
+    private Color corOriginal;
 
     private float velocidade = 2f;
 
@@ -35,6 +40,12 @@ public class FelicidadeEstado : MonoBehaviour
         bossVida = GetComponent<BossVida>(); // Inicialização da referência
     }
 
+    void Start()
+    {
+        bossSR = GetComponent<SpriteRenderer>();
+        corOriginal = bossSR.color;
+    }
+
     private void Update()
     {
         if (bossVida.isDead) return; // Verifica se o boss está morto
@@ -60,7 +71,7 @@ public class FelicidadeEstado : MonoBehaviour
                         Debug.Log("Preparando para investida");
                         investidaDirecao = (posicaoPlayer - RetornarPosicao()).normalized;
                         estado = BossEstado.PreparandoInvestida;
-                        prepararInvestidaDelay = 1f; // Reinicia o delay de preparação
+                        StartCoroutine(AvisoInvestida());
                     }
                     else
                     {
@@ -136,5 +147,20 @@ public class FelicidadeEstado : MonoBehaviour
     public Vector3 RetornarPosicao()
     {
         return transform.position;
+    }
+
+    private IEnumerator AvisoInvestida()
+    {
+        // Muda a cor do boss para a cor de aviso
+        bossSR.color = avisoCor;
+
+        // Aguarda o tempo de aviso
+        yield return new WaitForSeconds(avisoDuracao);
+
+        // Restaura a cor original do boss
+        bossSR.color = corOriginal;
+
+        // Muda o estado para PreparandoInvestida após o aviso
+        prepararInvestidaDelay = 1f; // Reinicia o delay de preparação
     }
 }

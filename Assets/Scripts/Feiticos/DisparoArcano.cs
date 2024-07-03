@@ -8,7 +8,7 @@ public class DisparoArcano : MonoBehaviour
     [SerializeField] private PlayerMiraFeitico playerMiraFeitico;
     [SerializeField] private Material marcadorFeiticoMaterial;
 
-    [SerializeField] private int dano = 10;
+    [SerializeField] private int dano = 5;
 
     private void Start()
     {
@@ -19,7 +19,6 @@ public class DisparoArcano : MonoBehaviour
     {
         Vector3 direcaoDisparo = (e.posicaoDisparo - e.posicaoPontaLivro).normalized;
 
-        UtilsClass.ShakeCamera(0.1f, .1f);
         DisparoArcanoRaycast.Disparar(e.posicaoPontaLivro, direcaoDisparo, dano);
         CriarMarcadorFeitico(e.posicaoPontaLivro, e.posicaoDisparo);
     }

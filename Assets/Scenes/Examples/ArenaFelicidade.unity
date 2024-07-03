@@ -4181,7 +4181,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8c50df051425b740bfe7419529601ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vidaMaxima: 100
+  vidaMaxima: 200
   vidaAtual: 0
   isDead: 0
   bossSR: {fileID: 622907425}

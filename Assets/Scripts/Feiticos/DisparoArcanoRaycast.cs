@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using CodeMonkey.Utils;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -16,6 +17,7 @@ public static class DisparoArcanoRaycast
                 //Disparo acertou um alvo!
                 Debug.Log("Acerto");
                 alvo.gameObject.GetComponent<BossVida>().ReceberDano(dano);
+                UtilsClass.ShakeCamera(0.1f, .1f);
             }
         }
     }
