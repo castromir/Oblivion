@@ -4,21 +4,15 @@ using UnityEngine;
 
 public class MarkScript : MonoBehaviour
 {
-    /**void OnTriggerEnter2D(Collider2D collision)
+    // Start is called before the first frame update
+    void Start()
     {
-        if (collision.gameObject.CompareTag("Star"))
-        {
-            //isOnGoud = true;
-            Debug.Log("ta no chao MARCA");
-        }
-
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            //playerVida.ReceberDano();
-            Debug.Log("ta escostando MARCA");
-        }
-
-
+        
     }
-    **/
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
 }

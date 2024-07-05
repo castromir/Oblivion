@@ -10,7 +10,7 @@ public class BossVida : MonoBehaviour
     public bool isDead = false;
 
     public SpriteRenderer bossSR;
-    public IABoss bossMovimento;
+    public BossFelicidade bossMovimento;
 
 
     private Collider2D[] colliders;

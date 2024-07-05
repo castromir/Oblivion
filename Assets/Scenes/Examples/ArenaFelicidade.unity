@@ -3995,6 +3995,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 622907426}
+  - component: {fileID: 622907434}
   - component: {fileID: 622907425}
   - component: {fileID: 622907424}
   - component: {fileID: 622907423}
@@ -4004,6 +4005,7 @@ GameObject:
   - component: {fileID: 622907429}
   - component: {fileID: 622907430}
   - component: {fileID: 622907431}
+  - component: {fileID: 622907433}
   m_Layer: 0
   m_Name: BossFelicidade
   m_TagString: Alvo
@@ -4196,6 +4198,40 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a3cb2196ddba4164bbb175cc6fbc9b32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bossSR: {fileID: 0}
+  avisoCor: {r: 1, g: 0, b: 0, a: 1}
+  avisoDuracao: 1
+--- !u!95 &622907433
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 622907422}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c6c0d9af86edd9c44954b1a55c17d739, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &622907434
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 622907422}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d56a8d65476e2041a946b4de30c2909, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &766874357

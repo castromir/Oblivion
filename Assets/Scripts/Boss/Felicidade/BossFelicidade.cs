@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IABoss : MonoBehaviour
+public class BossFelicidade : Boss
 {
     public GameObject player;
     public float speed;
@@ -14,9 +14,12 @@ public class IABoss : MonoBehaviour
     private float timer = 0f;
     public float dashDistance;
 
+    BossRenderer bossRender;
+
     void Start()
     {
         powers = GetComponent<Powers>();
+        bossRender = GetComponent<BossRenderer>();
     }
 
     void Update()
@@ -27,7 +30,7 @@ public class IABoss : MonoBehaviour
         direction.Normalize();
         if (distance < acceptableDistance )
         {
-            MoverParaPosicao(player.transform.position, speed);
+            //MoverParaPosicao(player.transform.position, direction, speed, false);
             timer += Time.deltaTime;
             if (timer > timerDistance)
             {
@@ -38,8 +41,19 @@ public class IABoss : MonoBehaviour
         
     }
 
-    public void MoverParaPosicao(Vector3 targetPosition, float velocidade)
+    public override string[] GetDirecoesEstaticas()
     {
+        return new string[] { "Felicidade Andar N", "Felicidade Andar O", "Felicidade Andar S", "Felicidade Andar L" };
+    }
+
+    public override string[] GetDirecoesHabilidade()
+    {
+        return new string[] { "Felicidade Investida N", "Felicidade Investida O", "Felicidade Investida S", "Felicidade Investida L"};
+    }
+
+    public void MoverParaPosicao(Vector3 targetPosition, Vector2 direcao, float velocidade, bool investida)
+    {
+        bossRender.SetDirection(direcao, investida);
         transform.position = Vector2.MoveTowards(this.transform.position, targetPosition, velocidade * Time.deltaTime);
     }    
 }

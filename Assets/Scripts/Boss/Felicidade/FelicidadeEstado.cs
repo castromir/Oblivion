@@ -1,11 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 
 public class FelicidadeEstado : MonoBehaviour
 {
-    private IABoss felicidade;
+    private BossFelicidade felicidade;
     private GameObject player;
     private BossVida bossVida;
 
@@ -21,7 +20,7 @@ public class FelicidadeEstado : MonoBehaviour
     private float investidaDelay = 1.5f; // Inicialização do delay
     private float investidaTimer = 0f; // Temporizador da investida
     private float prepararInvestidaDelay = 1f; // Delay antes da investida
-    private Vector3 investidaDirecao;
+    private Vector3 direcao;
 
     enum BossEstado
     {
@@ -35,7 +34,7 @@ public class FelicidadeEstado : MonoBehaviour
 
     void Awake()
     {
-        felicidade = GetComponent<IABoss>();
+        felicidade = GetComponent<BossFelicidade>();
         player = felicidade.player;
         bossVida = GetComponent<BossVida>(); // Inicialização da referência
     }
@@ -56,27 +55,28 @@ public class FelicidadeEstado : MonoBehaviour
                 break;
 
             case BossEstado.Padrao:
-
                 investidaDelay -= Time.deltaTime;
                 Vector3 posicaoPlayer = player.transform.position;
 
+                // Calcular a direção
+                direcao = (posicaoPlayer - RetornarPosicao()).normalized;
+
                 if (investidaDelay > 0) // investida em recarga, boss apenas se move
                 {
-                    felicidade.MoverParaPosicao(player.transform.position, velocidade);
+                    felicidade.MoverParaPosicao(player.transform.position, direcao, velocidade, false);
                 }
                 else
                 {
                     if (ConsegueInvestida(posicaoPlayer, player))
                     {
                         Debug.Log("Preparando para investida");
-                        investidaDirecao = (posicaoPlayer - RetornarPosicao()).normalized;
                         estado = BossEstado.PreparandoInvestida;
                         StartCoroutine(AvisoInvestida());
                     }
                     else
                     {
                         // Caminhando em direção ao jogador
-                        felicidade.MoverParaPosicao(player.transform.position, velocidade);
+                        felicidade.MoverParaPosicao(player.transform.position, direcao, velocidade, false);
                     }
                 }
                 break;
@@ -95,7 +95,7 @@ public class FelicidadeEstado : MonoBehaviour
             case BossEstado.Investida:
                 if (investidaTimer > 0)
                 {
-                    transform.position += investidaDirecao * investidaVelocidade * Time.deltaTime; // Atualizando posição durante a investida
+                    transform.position += direcao * investidaVelocidade * Time.deltaTime; // Atualizando posição durante a investida
 
                     float investidaVelocidadeReducaoMultiplicador = 1f;
                     investidaVelocidade -= investidaVelocidade * investidaVelocidadeReducaoMultiplicador * Time.deltaTime;
@@ -103,14 +103,14 @@ public class FelicidadeEstado : MonoBehaviour
                     investidaTimer -= Time.deltaTime;
 
                     float acertoDistancia = 3f;
-                    RaycastHit2D raycastHit2D = Physics2D.Raycast(RetornarPosicao(), investidaDirecao, acertoDistancia);
+                    RaycastHit2D raycastHit2D = Physics2D.Raycast(RetornarPosicao(), direcao, acertoDistancia);
                     if (raycastHit2D.collider != null)
                     {
                         Player player = raycastHit2D.collider.GetComponent<Player>();
                         if (player != null)
                         {
                             investidaVelocidade = 60f;
-                            investidaDirecao *= -1f;
+                            direcao *= -1f;
                         }
                     }
                 }
