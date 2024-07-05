@@ -51,9 +51,17 @@ public class BossFelicidade : Boss
         return new string[] { "Felicidade Investida N", "Felicidade Investida O", "Felicidade Investida S", "Felicidade Investida L"};
     }
 
-    public void MoverParaPosicao(Vector3 targetPosition, Vector2 direcao, float velocidade, bool investida)
+    public void MoverParaPosicao(Vector3 targetPosition, Vector2 direcao, float velocidade)
     {
-        bossRender.SetDirection(direcao, investida);
+        Renderizar(direcao, false);
         transform.position = Vector2.MoveTowards(this.transform.position, targetPosition, velocidade * Time.deltaTime);
     }    
+
+    public void Renderizar(Vector2 direcao, bool investida)
+    {
+        if (investida)
+            bossRender.SetDirection(direcao, true);
+        else
+            bossRender.SetDirection(direcao, false);
+    }
 }

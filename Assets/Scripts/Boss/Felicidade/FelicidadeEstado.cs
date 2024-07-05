@@ -22,6 +22,7 @@ public class FelicidadeEstado : MonoBehaviour
     private float prepararInvestidaDelay = 1f; // Delay antes da investida
     private Vector3 direcao;
 
+
     enum BossEstado
     {
         Inativo,
@@ -36,7 +37,7 @@ public class FelicidadeEstado : MonoBehaviour
     {
         felicidade = GetComponent<BossFelicidade>();
         player = felicidade.player;
-        bossVida = GetComponent<BossVida>(); // Inicialização da referência
+        bossVida = GetComponent<BossVida>(); // Inicialização da referência   
     }
 
     void Start()
@@ -63,7 +64,7 @@ public class FelicidadeEstado : MonoBehaviour
 
                 if (investidaDelay > 0) // investida em recarga, boss apenas se move
                 {
-                    felicidade.MoverParaPosicao(player.transform.position, direcao, velocidade, false);
+                    felicidade.MoverParaPosicao(player.transform.position, direcao, velocidade);
                 }
                 else
                 {
@@ -76,7 +77,7 @@ public class FelicidadeEstado : MonoBehaviour
                     else
                     {
                         // Caminhando em direção ao jogador
-                        felicidade.MoverParaPosicao(player.transform.position, direcao, velocidade, false);
+                        felicidade.MoverParaPosicao(player.transform.position, direcao, velocidade);
                     }
                 }
                 break;
@@ -96,6 +97,7 @@ public class FelicidadeEstado : MonoBehaviour
                 if (investidaTimer > 0)
                 {
                     transform.position += direcao * investidaVelocidade * Time.deltaTime; // Atualizando posição durante a investida
+                    felicidade.Renderizar(direcao, true);
 
                     float investidaVelocidadeReducaoMultiplicador = 1f;
                     investidaVelocidade -= investidaVelocidade * investidaVelocidadeReducaoMultiplicador * Time.deltaTime;
