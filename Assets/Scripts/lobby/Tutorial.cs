@@ -9,6 +9,7 @@ public class Tutorial : MonoBehaviour
 
     private bool moveComplete = false;
     private bool teleportComplete = false;
+    public bool tutorialComplete = false;
 
     void Start()
     {
@@ -37,6 +38,7 @@ public class Tutorial : MonoBehaviour
         if (teleportComplete && Input.GetMouseButtonDown(0))
         {
             attackInstruction.gameObject.SetActive(false);
+            tutorialComplete = true;
             Debug.Log("Tutorial Completo!");
         }
     }

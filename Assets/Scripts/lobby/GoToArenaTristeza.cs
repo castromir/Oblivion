@@ -7,9 +7,22 @@ public class GoToArenaTristeza : MonoBehaviour
 {
     // Start is called before the first frame update
     public Text text;
+    public Text textNaoPode;
+    public GameObject tutorial;
+    private Tutorial tutorialScript;
+
+    public GameObject arenaFelicidade;
+    private GoToArenaFelicidade arenafeliciaScript;
+
+
     void Start()
     {
+        tutorialScript = tutorial.GetComponent<Tutorial>();
+        arenafeliciaScript = arenaFelicidade.GetComponent<GoToArenaFelicidade>();
+
         text.gameObject.SetActive(false);
+        textNaoPode.gameObject.SetActive(false);
+
     }
 
     // Update is called once per frame
@@ -20,23 +33,38 @@ public class GoToArenaTristeza : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
+        if (tutorialScript.tutorialComplete)
         {
-            text.gameObject.SetActive(true);
-
-            if (Input.GetKeyDown(KeyCode.E))
+            if (arenafeliciaScript.arenaFeita)
             {
-                text.gameObject.SetActive(false);
-                SceneManager.LoadSceneAsync(1); // 0 é felicidade, 1 é tristeza e 2 é o lobby
+                if (other.CompareTag("Player"))
+                {
+                    text.gameObject.SetActive(true);
+
+                    if (Input.GetKeyDown(KeyCode.E))
+                    {
+                        text.gameObject.SetActive(false);
+                        SceneManager.LoadSceneAsync(1); // 0 é felicidade, 1 é tristeza e 2 é o lobby
+                    }
+                }
+            }
+            else
+            {
+                if (other.CompareTag("Player"))
+                {
+                    textNaoPode.gameObject.SetActive(true);
+                }
             }
         }
     }
+
 
     private void OnTriggerExit2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
             text.gameObject.SetActive(false);
+            textNaoPode.gameObject.SetActive(false);
         }
     }
 }
