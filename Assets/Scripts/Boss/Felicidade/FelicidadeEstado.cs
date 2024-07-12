@@ -7,6 +7,7 @@ public class FelicidadeEstado : MonoBehaviour
     private BossFelicidade felicidade;
     private GameObject player;
     private BossVida bossVida;
+    private FelicidadeLaser laser;
 
     public SpriteRenderer bossSR;
     public Color avisoCor = Color.red;
@@ -28,7 +29,8 @@ public class FelicidadeEstado : MonoBehaviour
         Inativo,
         Padrao,
         PreparandoInvestida,
-        Investida
+        Investida,
+        Laser
     }
 
     BossEstado estado = BossEstado.Padrao;
@@ -37,7 +39,8 @@ public class FelicidadeEstado : MonoBehaviour
     {
         felicidade = GetComponent<BossFelicidade>();
         player = felicidade.player;
-        bossVida = GetComponent<BossVida>(); // Inicialização da referência   
+        bossVida = GetComponent<BossVida>();
+        laser = GetComponent<FelicidadeLaser>();
     }
 
     void Start()
@@ -58,17 +61,19 @@ public class FelicidadeEstado : MonoBehaviour
             case BossEstado.Padrao:
                 investidaDelay -= Time.deltaTime;
                 Vector3 posicaoPlayer = player.transform.position;
-
-                // Calcular a direção
                 direcao = (posicaoPlayer - RetornarPosicao()).normalized;
 
-                if (investidaDelay > 0) // investida em recarga, boss apenas se move
+                if (investidaDelay > 0 && !laser.ConsegueLaser()) // investida e laser em recarga, boss apenas se move
                 {
                     felicidade.MoverParaPosicao(player.transform.position, direcao, velocidade);
                 }
+                else if (investidaDelay > 0 && laser.ConsegueLaser()) // investida em recarga, laser pronto
+                { 
+
+                }
                 else
                 {
-                    if (ConsegueInvestida(posicaoPlayer, player))
+                    if (ConsegueInvestida(posicaoPlayer, player)) // só investida
                     {
                         Debug.Log("Preparando para investida");
                         estado = BossEstado.PreparandoInvestida;

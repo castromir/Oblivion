@@ -10,6 +10,8 @@ public class TeleporteFeitico : Feiticos
         Vector3 mousePosicao = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         mousePosicao.z = 0;
 
+        //if (mousePosicao.y.T)
+
         parente.transform.position = mousePosicao;
     }
 }
