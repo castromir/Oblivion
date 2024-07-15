@@ -23,7 +23,6 @@ public class FelicidadeEstado : MonoBehaviour
     private float prepararInvestidaDelay = 1f; // Delay antes da investida
     private Vector3 direcao;
 
-
     enum BossEstado
     {
         Inativo,
@@ -41,6 +40,7 @@ public class FelicidadeEstado : MonoBehaviour
         player = felicidade.player;
         bossVida = GetComponent<BossVida>();
         laser = GetComponent<FelicidadeLaser>();
+        laser.SetPlayerTransform(player.transform);  // Configurar o playerTransform no FelicidadeLaser
     }
 
     void Start()
@@ -68,14 +68,14 @@ public class FelicidadeEstado : MonoBehaviour
                     felicidade.MoverParaPosicao(player.transform.position, direcao, velocidade);
                 }
                 else if (investidaDelay > 0 && laser.ConsegueLaser()) // investida em recarga, laser pronto
-                { 
-
+                {
+                    // Ativar o estado de disparo do laser
+                    estado = BossEstado.Laser;
                 }
                 else
                 {
                     if (ConsegueInvestida(posicaoPlayer, player)) // só investida
                     {
-                        Debug.Log("Preparando para investida");
                         estado = BossEstado.PreparandoInvestida;
                         StartCoroutine(AvisoInvestida());
                     }
@@ -91,7 +91,6 @@ public class FelicidadeEstado : MonoBehaviour
                 prepararInvestidaDelay -= Time.deltaTime;
                 if (prepararInvestidaDelay <= 0)
                 {
-                    Debug.Log("Iniciando investida");
                     investidaVelocidade = 10f; // Velocidade inicial da investida
                     investidaTimer = investidaTempo; // Reinicia o temporizador da investida
                     estado = BossEstado.Investida;
@@ -126,8 +125,13 @@ public class FelicidadeEstado : MonoBehaviour
                     estado = BossEstado.Padrao;
                     investidaDelay = 1.5f;
                     DefinirEstadoNormal();
-                    Debug.Log("Fim da investida, retornando ao estado padrão.");
                 }
+                break;
+
+            case BossEstado.Laser:
+                // Disparar o laser
+                laser.DispararLaser();
+                estado = BossEstado.Padrao;  // Retornar ao estado padrão após disparar o laser
                 break;
         }
     }
@@ -139,7 +143,6 @@ public class FelicidadeEstado : MonoBehaviour
         float investidaDistanciaMax = 5f;
         if (distanciaAlvo > investidaDistanciaMax)
         {
-            Debug.Log("boolfalse");
             return false;
         }
 

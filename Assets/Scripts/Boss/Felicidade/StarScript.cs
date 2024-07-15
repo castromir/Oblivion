@@ -49,7 +49,6 @@ public class StarScript : MonoBehaviour
         if (collision.gameObject.CompareTag("Player") && isOnGoud && canDamage)
         {
             playerVida.ReceberDano();
-            Debug.Log("Star Damage!");
             canDamage = false;
         }
 
