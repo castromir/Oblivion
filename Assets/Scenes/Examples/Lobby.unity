@@ -8462,7 +8462,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Use o bot\xE3o direito do mouse para atacar!"
+  m_Text: "Use o bot\xE3o esquerdo do mouse para atacar!"
 --- !u!222 &662687639
 CanvasRenderer:
   m_ObjectHideFlags: 0

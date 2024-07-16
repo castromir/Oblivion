@@ -349,12 +349,12 @@ PrefabInstance:
     - target: {fileID: 4392688208590565962, guid: c90eee56c237d884a8482e4119247970,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0.084
       objectReference: {fileID: 0}
     - target: {fileID: 4392688208590565962, guid: c90eee56c237d884a8482e4119247970,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.193
       objectReference: {fileID: 0}
     - target: {fileID: 4392688208590565962, guid: c90eee56c237d884a8482e4119247970,
         type: 3}
@@ -4325,9 +4325,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   laserRecarga: 8
-  laserDistancia: 100
+  laserDuracao: 1
+  comprimento: 100
   laserPrefab: {fileID: 1130116015}
   laserSpawnPoint: {fileID: 67045986}
+  player: {fileID: 0}
 --- !u!1001 &766874357
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7422,6 +7424,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b8b57225ccf12746893d3ecbadb4a3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerVida: {fileID: 0}
   duracao: 1
   velocidade: 10
 --- !u!224 &1161129126 stripped
@@ -15421,7 +15424,7 @@ PrefabInstance:
     - target: {fileID: 1246958761106751806, guid: c2c536102c0425942a4b5b6ac5fba723,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -244.10999
+      value: -377
       objectReference: {fileID: 0}
     - target: {fileID: 1246958761106751806, guid: c2c536102c0425942a4b5b6ac5fba723,
         type: 3}
@@ -15557,6 +15560,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7118562165350225809, guid: da43bfab3e3bed846a6a9ff4b312be37,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 3.38655
+      objectReference: {fileID: 0}
+    - target: {fileID: 7118562165350225809, guid: da43bfab3e3bed846a6a9ff4b312be37,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7118562165350225809, guid: da43bfab3e3bed846a6a9ff4b312be37,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.75
+      objectReference: {fileID: 0}
     - target: {fileID: 5223191402041878470, guid: da43bfab3e3bed846a6a9ff4b312be37,
         type: 3}
       propertyPath: m_Offset.y
@@ -15566,6 +15584,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Size.y
       value: 0.1311687
+      objectReference: {fileID: 0}
+    - target: {fileID: 5223191402041878470, guid: da43bfab3e3bed846a6a9ff4b312be37,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 0.17
+      objectReference: {fileID: 0}
+    - target: {fileID: 5223191402041878470, guid: da43bfab3e3bed846a6a9ff4b312be37,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.y
+      value: 0.17
+      objectReference: {fileID: 0}
+    - target: {fileID: 5223191402041878470, guid: da43bfab3e3bed846a6a9ff4b312be37,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7118562165350225808, guid: da43bfab3e3bed846a6a9ff4b312be37,
         type: 3}
@@ -15581,6 +15614,11 @@ PrefabInstance:
     - target: {fileID: 7118562165350225808, guid: da43bfab3e3bed846a6a9ff4b312be37,
         type: 3}
       propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7118562165350225808, guid: da43bfab3e3bed846a6a9ff4b312be37,
+        type: 3}
+      propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []

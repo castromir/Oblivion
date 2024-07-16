@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class FelicidadeEstado : MonoBehaviour
@@ -15,12 +14,15 @@ public class FelicidadeEstado : MonoBehaviour
     private Color corOriginal;
 
     private float velocidade = 2f;
-
     private float investidaVelocidade = 6f;
     private float investidaTempo = 2f; // Duração da investida
     private float investidaDelay = 1.5f; // Inicialização do delay
     private float investidaTimer = 0f; // Temporizador da investida
     private float prepararInvestidaDelay = 1f; // Delay antes da investida
+
+    static public float laserDelayTempo = 1.5f; // Tempo de delay do laser
+    private float laserDelay = laserDelayTempo;
+
     private Vector3 direcao;
 
     enum BossEstado
@@ -67,10 +69,10 @@ public class FelicidadeEstado : MonoBehaviour
                 {
                     felicidade.MoverParaPosicao(player.transform.position, direcao, velocidade);
                 }
-                else if (investidaDelay > 0 && laser.ConsegueLaser()) // investida em recarga, laser pronto
+                else if (laser.ConsegueLaser()) // investida em recarga, laser pronto
                 {
                     // Ativar o estado de disparo do laser
-                    estado = BossEstado.Laser;
+                    StartCoroutine(EstadoLaser());
                 }
                 else
                 {
@@ -127,13 +129,25 @@ public class FelicidadeEstado : MonoBehaviour
                     DefinirEstadoNormal();
                 }
                 break;
-
-            case BossEstado.Laser:
-                // Disparar o laser
-                laser.DispararLaser();
-                estado = BossEstado.Padrao;  // Retornar ao estado padrão após disparar o laser
-                break;
         }
+    }
+
+    private IEnumerator EstadoLaser()
+    {
+        estado = BossEstado.Laser;
+
+        // Aguarda o tempo do laserDelay antes de disparar o laser
+        yield return new WaitForSeconds(laserDelay);
+
+        // Dispara o laser
+        laser.DispararLaser();
+        Debug.Log("Laser disparado!");
+
+        // Aguarda novamente o tempo do laserDelay após disparar o laser
+        yield return new WaitForSeconds(laserDelay);
+
+        // Retorna ao estado padrão
+        estado = BossEstado.Padrao;
     }
 
     private bool ConsegueInvestida(Vector3 posicaoAlvo, GameObject alvoGameObject)

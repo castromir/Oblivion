@@ -3,9 +3,16 @@ using UnityEngine;
 
 public class Laser : MonoBehaviour
 {
+    public PlayerVida playerVida;
+
     public float duracao = 1f;  // Duração do laser em segundos
     public float velocidade = 10f;  // Velocidade do laser
     private Vector3 direcao;
+
+    private void Awake()
+    {
+        playerVida = FindObjectOfType<PlayerVida>();
+    }
 
     private void OnEnable()
     {
@@ -30,11 +37,12 @@ public class Laser : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        // Lógica para detectar colisões com o jogador ou outros objetos
         if (collision.CompareTag("Player"))
         {
-            // Adicione lógica para causar dano ao jogador
-            Debug.Log("Player atingido pelo laser!");
+            // Acessa o componente PlayerVida e chama o método ReceberDano
+            
+                playerVida.ReceberDano();
+                Debug.Log("Player atingido pelo laser!");
         }
     }
 }
