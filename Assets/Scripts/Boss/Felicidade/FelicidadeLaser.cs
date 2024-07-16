@@ -4,12 +4,17 @@ using UnityEngine;
 
 public class FelicidadeLaser : MonoBehaviour
 {
+    public GameObject avisoPrefab;
+    private GameObject avisoAtual;
+
+    public float avisoDelay = 1f;
+
     [SerializeField] public static float laserTempoRecarga = 7f;
     public float laserRecarga = laserTempoRecarga;
-    public float laserDuracao = 0.5f; // Duração que o laser fica ativo
+    public float laserDuracao = 0.5f;
     public float comprimento = 10f;
-    public GameObject laserPrefab;  // Prefab do laser
-    public Transform laserSpawnPoint;  // Ponto de origem do laser
+    public GameObject laserPrefab;
+    public Transform laserSpawnPoint;
 
     public GameObject player;
     private Transform playerTransform;
@@ -35,43 +40,46 @@ public class FelicidadeLaser : MonoBehaviour
 
     public void DispararLaser()
     {
-        // Calcula a direção do laser
         Vector3 direcao = (player.transform.position - laserSpawnPoint.position).normalized;
-
-        // Calcula o ângulo em radianos e depois converte para graus
         float angulo = Mathf.Atan2(direcao.y, direcao.x) * Mathf.Rad2Deg;
 
-        // Instancia o laser com a rotação correta
+        Vector3 posicaoAviso = player.transform.position;
+        avisoAtual = Instantiate(avisoPrefab, posicaoAviso, Quaternion.identity);
+        avisoAtual.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+
+        avisoAtual.transform.SetParent(null);
+        avisoAtual.SetActive(true);
+
+        StartCoroutine(AguardarAvisoEContinuar(avisoDelay, angulo, direcao));
+    }
+
+    private IEnumerator AguardarAvisoEContinuar(float delay, float angulo, Vector3 direcao)
+    {
+        yield return new WaitForSeconds(delay);
+
         currentLaser = Instantiate(laserPrefab, laserSpawnPoint.position, Quaternion.Euler(0, 0, angulo));
-
-        // Ajusta a posição do laser para estar na frente do ponto de origem (assumindo que o ponto de origem está na extremidade do boss)
         currentLaser.transform.position += direcao * (currentLaser.transform.localScale.x / 2);
-
-        // Ajusta o comprimento do laser
         currentLaser.transform.localScale = new Vector3(comprimento, currentLaser.transform.localScale.y, currentLaser.transform.localScale.z);
-
-        // Ativa o laser
         currentLaser.SetActive(true);
 
-        // Inicia a corrotina para desativar o laser após a duração especificada
+        StartCoroutine(RemoverAvisoAposTempo(avisoAtual, laserDuracao));
         StartCoroutine(DesativarLaserAposTempo(currentLaser, laserDuracao));
-
-        // Reinicia o tempo de recarga do laser
         laserRecarga = laserTempoRecarga;
     }
 
     private IEnumerator DesativarLaserAposTempo(GameObject laser, float duracao)
     {
-        // Aguarda a duração do laser
         yield return new WaitForSeconds(duracao);
-
-        // Desativa o laser
         laser.SetActive(false);
-
-        // Destroi o laser após desativar (opcional)
         Destroy(laser);
     }
 
+    private IEnumerator RemoverAvisoAposTempo(GameObject aviso, float duracao)
+    {
+        yield return new WaitForSeconds(duracao);
+        aviso.SetActive(false);
+        Destroy(aviso);
+    }
 
     public void SetPlayerTransform(Transform player)
     {
