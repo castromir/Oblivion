@@ -1,5 +1,4 @@
-﻿using CodeMonkey.Utils;
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 
 public class FelicidadeLaser : MonoBehaviour
@@ -60,6 +59,13 @@ public class FelicidadeLaser : MonoBehaviour
         currentLaser = Instantiate(laserPrefab, laserSpawnPoint.position, Quaternion.Euler(0, 0, angulo));
         currentLaser.transform.position += direcao * (currentLaser.transform.localScale.x / 2);
         currentLaser.transform.localScale = new Vector3(comprimento, currentLaser.transform.localScale.y, currentLaser.transform.localScale.z);
+
+        Animator laserAnimator = currentLaser.GetComponent<Animator>();
+        if (laserAnimator != null)
+        {
+            laserAnimator.SetBool("IsFiring", true);
+        }
+
         currentLaser.SetActive(true);
 
         StartCoroutine(RemoverAvisoAposTempo(avisoAtual, laserDuracao));

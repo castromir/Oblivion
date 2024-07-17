@@ -16,12 +16,14 @@ public class FelicidadeEstado : MonoBehaviour
     private float velocidade = 2f;
     private float investidaVelocidade = 6f;
     private float investidaTempo = 2f; // Duração da investida
-    private float investidaDelay = 1.5f; // Inicialização do delay
-    private float investidaTimer = 0f; // Temporizador da investida
-    private float prepararInvestidaDelay = 1f; // Delay antes da investida
+    static private float investidaDelayTempo = 1.5f; // Inicialização do delay
+    private float investidaDelay = investidaDelayTempo; // Temporizador da investida
+    static private float prepararInvestidaDelayTempo = 1f; // Delay antes da investida
+    private float prepararInvestidaDelay = prepararInvestidaDelayTempo;
+    private float investidaTimer = 0f;
 
     static public float laserDelayTempo = 1.5f; // Tempo de delay do laser
-    private float laserDelay = laserDelayTempo;
+    private readonly float laserDelay = laserDelayTempo;
 
     private Vector3 direcao;
 
@@ -53,6 +55,21 @@ public class FelicidadeEstado : MonoBehaviour
 
     private void Update()
     {
+        if (bossVida.vidaAtual <= bossVida.GetVidaMaxima() / 5)
+        {
+            velocidade = 4f;
+            laserDelayTempo = 0.25f;
+            investidaDelayTempo = 0.8f;
+            prepararInvestidaDelayTempo = 0.35f;
+        }
+        else if (bossVida.vidaAtual <= bossVida.GetVidaMaxima() / 2)
+        {
+            velocidade = 3f;
+            laserDelayTempo = 0.5f;
+            investidaDelayTempo = 1f;
+            prepararInvestidaDelayTempo = 0.5f;
+        }
+
         if (bossVida.isDead) return; // Verifica se o boss está morto
 
         switch (estado)
@@ -125,7 +142,7 @@ public class FelicidadeEstado : MonoBehaviour
                 else
                 {
                     estado = BossEstado.Padrao;
-                    investidaDelay = 1.5f;
+                    investidaDelay = investidaDelayTempo;
                     DefinirEstadoNormal();
                 }
                 break;
@@ -136,17 +153,24 @@ public class FelicidadeEstado : MonoBehaviour
     {
         estado = BossEstado.Laser;
 
-        // Aguarda o tempo do laserDelay antes de disparar o laser
-        yield return new WaitForSeconds(laserDelay);
+        int numeroDeDisparos = 1;
 
-        // Dispara o laser
-        laser.DispararLaser();
-        Debug.Log("Laser disparado!");
+        if (bossVida.vidaAtual <= bossVida.GetVidaMaxima() / 5)
+        {
+            numeroDeDisparos = 3;
+        }
+        else if (bossVida.vidaAtual <= bossVida.GetVidaMaxima() / 2)
+        {
+            numeroDeDisparos = 2;
+        }
 
-        // Aguarda novamente o tempo do laserDelay após disparar o laser
-        yield return new WaitForSeconds(laserDelay);
+        for (int i = 0; i < numeroDeDisparos; i++)
+        {
+            yield return new WaitForSeconds(laserDelay);
+            laser.DispararLaser();
+            Debug.Log("Laser disparado!");
+        }
 
-        // Retorna ao estado padrão
         estado = BossEstado.Padrao;
     }
 
@@ -175,16 +199,10 @@ public class FelicidadeEstado : MonoBehaviour
 
     private IEnumerator AvisoInvestida()
     {
-        // Muda a cor do boss para a cor de aviso
         bossSR.color = avisoCor;
-
-        // Aguarda o tempo de aviso
         yield return new WaitForSeconds(avisoDuracao);
-
-        // Restaura a cor original do boss
         bossSR.color = corOriginal;
 
-        // Muda o estado para PreparandoInvestida após o aviso
-        prepararInvestidaDelay = 1f; // Reinicia o delay de preparação
+        prepararInvestidaDelay = prepararInvestidaDelayTempo;
     }
 }

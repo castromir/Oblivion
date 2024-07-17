@@ -5,18 +5,19 @@ using UnityEngine;
 
 public static class DisparoArcanoRaycast
 {
-   public static void Disparar(Vector3 posicaoInicial, Vector3 posicaoFinal, int dano)
+    public static void Disparar(Vector3 posicaoInicial, Vector3 direcao, float distanciaMaxima, int dano)
     {
-        RaycastHit2D raycastHit2D = Physics2D.Raycast(posicaoInicial, posicaoFinal);
+        RaycastHit2D[] hits = Physics2D.RaycastAll(posicaoInicial, direcao, distanciaMaxima);
 
-        if (raycastHit2D.collider != null)
-        { 
-            Alvo alvo = raycastHit2D.collider.GetComponent<Alvo>();
+        foreach (RaycastHit2D hit in hits)
+        {
+            Alvo alvo = hit.collider.GetComponent<Alvo>();
             if (alvo != null)
             {
-                //Disparo acertou um alvo!
+                // Disparo acertou um alvo!
                 alvo.gameObject.GetComponent<BossVida>().ReceberDano(dano);
                 UtilsClass.ShakeCamera(0.1f, .1f);
+                break; // Para de verificar após acertar o alvo
             }
         }
     }

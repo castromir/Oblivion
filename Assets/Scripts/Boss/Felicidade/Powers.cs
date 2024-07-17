@@ -26,9 +26,5 @@ public class Powers : MonoBehaviour
 
 
     }
-
-    //Relacionados ao ataque de chegar perto
-
-    
-    
+ 
 }

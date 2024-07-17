@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class PlayerMiraFeitico : MonoBehaviour
 {
-    public event EventHandler <AoUsarFeiticoEventArgs> AoUsarFeitico;
-    public class AoUsarFeiticoEventArgs : EventArgs 
+    public event EventHandler<AoUsarFeiticoEventArgs> AoUsarFeitico;
+    public class AoUsarFeiticoEventArgs : EventArgs
     {
         public Vector3 posicaoPontaLivro;
         public Vector3 posicaoDisparo;
@@ -73,21 +73,12 @@ public class PlayerMiraFeitico : MonoBehaviour
             livroUsarFeiticoAnimator.SetTrigger("AtivarMagia"); //ao usar magia ativa a animacao
             livroUsarFeiticoAnimator.SetBool("estaAtivo", true); //checar se a animacao acabou
 
-            AoUsarFeitico?.Invoke(this, new AoUsarFeiticoEventArgs 
+            AoUsarFeitico?.Invoke(this, new AoUsarFeiticoEventArgs
             {
                 posicaoPontaLivro = miraPontaLivroTransformar.position,
                 posicaoDisparo = mousePosicao,
             });
         }
-       
+
     }
-    /*if (e.hitObject != null) {
-            Enemy enemy = e.hitObject.GetComponent<Enemy>();
-            if (enemy != null) {
-                enemy.Damage(this, weapon.GetDamageMultiplier());
-            }
-            ShieldFieldTransformer shieldFieldTransformer = e.hitObject.GetComponent<ShieldFieldTransformer>();
-            if (shieldFieldTransformer != null) {
-                shieldFieldTransformer.Damage(this, weapon.GetDamageMultiplier());
-            }*/
 }

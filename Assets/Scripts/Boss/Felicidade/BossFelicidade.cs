@@ -30,7 +30,6 @@ public class BossFelicidade : Boss
         direction.Normalize();
         if (distance < acceptableDistance )
         {
-            //MoverParaPosicao(player.transform.position, direction, speed, false);
             timer += Time.deltaTime;
             if (timer > timerDistance)
             {

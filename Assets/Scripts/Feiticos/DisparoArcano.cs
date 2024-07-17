@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DisparoArcano : MonoBehaviour 
+public class DisparoArcano : MonoBehaviour
 {
     [SerializeField] private PlayerMiraFeitico playerMiraFeitico;
     [SerializeField] private Material marcadorFeiticoMaterial;
@@ -18,8 +18,9 @@ public class DisparoArcano : MonoBehaviour
     private void PlayerMiraFeitico_AoUsarFeitico(object sender, PlayerMiraFeitico.AoUsarFeiticoEventArgs e)
     {
         Vector3 direcaoDisparo = (e.posicaoDisparo - e.posicaoPontaLivro).normalized;
+        float distanciaMaxima = Vector3.Distance(e.posicaoPontaLivro, e.posicaoDisparo);
 
-        DisparoArcanoRaycast.Disparar(e.posicaoPontaLivro, direcaoDisparo, dano);
+        DisparoArcanoRaycast.Disparar(e.posicaoPontaLivro, direcaoDisparo, distanciaMaxima, dano);
         CriarMarcadorFeitico(e.posicaoPontaLivro, e.posicaoDisparo);
     }
 
