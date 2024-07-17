@@ -4415,7 +4415,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8c50df051425b740bfe7419529601ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vidaMaxima: 300
+  vidaMaxima: 1400
   vidaAtual: 0
   isDead: 0
   bossSR: {fileID: 622907425}
@@ -15848,7 +15848,7 @@ PrefabInstance:
     - target: {fileID: 1246958761106751807, guid: c2c536102c0425942a4b5b6ac5fba723,
         type: 3}
       propertyPath: m_WholeNumbers
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1246958761106751807, guid: c2c536102c0425942a4b5b6ac5fba723,
         type: 3}

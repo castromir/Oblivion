@@ -13,8 +13,8 @@ public class FelicidadeEstado : MonoBehaviour
     public float avisoDuracao = 1f;
     private Color corOriginal;
 
-    private float velocidade = 2f;
-    private float investidaVelocidade = 6f;
+    private float velocidade = 3f;
+    private float investidaVelocidade = 8f;
     private float investidaTempo = 2f; // Duração da investida
     static private float investidaDelayTempo = 1.5f; // Inicialização do delay
     private float investidaDelay = investidaDelayTempo; // Temporizador da investida
@@ -55,17 +55,17 @@ public class FelicidadeEstado : MonoBehaviour
 
     private void Update()
     {
-        if (bossVida.vidaAtual <= bossVida.GetVidaMaxima() / 5)
+        if (bossVida.vidaAtual <= bossVida.GetVidaMaxima() / 4)
         {
-            velocidade = 4f;
+            velocidade = 6f;
             laserDelayTempo = 0.25f;
-            investidaDelayTempo = 0.8f;
-            prepararInvestidaDelayTempo = 0.35f;
+            investidaDelayTempo = 0.5f;
+            prepararInvestidaDelayTempo = 0.3f;
         }
-        else if (bossVida.vidaAtual <= bossVida.GetVidaMaxima() / 2)
+        else if (bossVida.vidaAtual <= bossVida.GetVidaMaxima() / 1.5)
         {
-            velocidade = 3f;
-            laserDelayTempo = 0.5f;
+            velocidade = 4.5f;
+            laserDelayTempo = 0.8f;
             investidaDelayTempo = 1f;
             prepararInvestidaDelayTempo = 0.5f;
         }
