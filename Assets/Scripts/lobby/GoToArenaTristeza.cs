@@ -44,7 +44,7 @@ public class GoToArenaTristeza : MonoBehaviour
                     if (Input.GetKeyDown(KeyCode.E))
                     {
                         text.gameObject.SetActive(false);
-                        SceneManager.LoadSceneAsync(1); // 0 é felicidade, 1 é tristeza e 2 é o lobby
+                        SceneManager.LoadSceneAsync(3); //0 Menu, 1 Lobby, 2 Arena Felicidade, 3 Arena Tristeza, 4 Arena raiva
                     }
                 }
             }
