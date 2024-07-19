@@ -391,7 +391,8 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "Programadores: Caio Castro Miranda e Mois\xE9s Ferreira Prot\xE1zio Bastos\nArte:
-    Daniel e Jo\xE3o Felipe\nGame Desing: Jo\xE3o Felipe\n"
+    Daniel Oliveira de Sousa e Jo\xE3o Felipe Peres Lima\nGame Desing: Caio Castro
+    Miranda e Jo\xE3o Felipe Peres Lima\n"
 --- !u!222 &68680448
 CanvasRenderer:
   m_ObjectHideFlags: 0

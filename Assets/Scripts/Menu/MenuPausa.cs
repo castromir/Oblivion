@@ -4,31 +4,32 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class Menu : MonoBehaviour
-{
-    public GameObject painelCreditos;
-    // Start is called before the first frame update
-    void Start()
-    {
 
-    }
+public class MenuPausa : MonoBehaviour
+{
+    public GameObject painelPause;
+    // Start is called before the first frame update
+  
 
     // Update is called once per frame
     void Update()
     {
-
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Pause();
+        }
     }
 
-    public void Novo_Jogo()
+    private void Pause()
     {
-        //colocar o nome da primera cena do jogo;
-        SceneManager.LoadScene(1); //0 Menu, 1 Lobby, 2 Arena Felicidade, 3 Arena Tristeza, 4 Arena raiva
+        painelPause.SetActive(true);
+        Time.timeScale = 0;
     }
 
-    public void Continuar()
+    public void Continue()
     {
-        //colocar o nome da cena que vai continuar;
-        SceneManager.LoadScene("");
+        painelPause.SetActive(false);
+        Time.timeScale = 1;
     }
 
     public void Sair()
@@ -38,15 +39,5 @@ public class Menu : MonoBehaviour
 
         //Se o jogo estiver compilado usar comando abaixo.
         //Application.Quit();
-    }
-
-    public void MostrarPainelCredito()
-    {
-        painelCreditos.SetActive(true);
-    }
-
-    public void VoltarMenu()
-    {
-        painelCreditos.SetActive(false);
     }
 }
