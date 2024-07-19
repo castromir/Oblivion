@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Teleporte
   nome: Teleporte
   tempoRecarga: 5
-  tempoDuracao: 0.25
+  tempoDuracao: 0.1

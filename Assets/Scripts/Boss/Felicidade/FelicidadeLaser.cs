@@ -1,23 +1,26 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class FelicidadeLaser : MonoBehaviour
 {
     public GameObject avisoPrefab;
-    private GameObject avisoAtual;
+    private List<GameObject> avisosAtuais = new List<GameObject>();
 
     public float avisoDelay = 1f;
 
     [SerializeField] public static float laserTempoRecarga = 7f;
     public float laserRecarga = laserTempoRecarga;
     public float laserDuracao = 0.5f;
-    public float comprimento = 10f;
+    public float comprimento = 0;
     public GameObject laserPrefab;
     public Transform laserSpawnPoint;
 
     public GameObject player;
     private Transform playerTransform;
     private GameObject currentLaser;
+
+    private int numeroDeAvisos = 7;
 
     private void Awake()
     {
@@ -42,12 +45,18 @@ public class FelicidadeLaser : MonoBehaviour
         Vector3 direcao = (player.transform.position - laserSpawnPoint.position).normalized;
         float angulo = Mathf.Atan2(direcao.y, direcao.x) * Mathf.Rad2Deg;
 
-        Vector3 posicaoAviso = player.transform.position;
-        avisoAtual = Instantiate(avisoPrefab, posicaoAviso, Quaternion.identity);
-        avisoAtual.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+        float distanciaEntreAvisos = 15f / numeroDeAvisos;
+        Vector3 posicaoAvisoInicial = laserSpawnPoint.position;
 
-        avisoAtual.transform.SetParent(null);
-        avisoAtual.SetActive(true);
+        for (int i = 1; i <= numeroDeAvisos; i++)
+        {
+            Vector3 posicaoAviso = posicaoAvisoInicial + direcao * distanciaEntreAvisos * i;
+            GameObject avisoAtual = Instantiate(avisoPrefab, posicaoAviso, Quaternion.identity);
+            avisoAtual.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+            avisoAtual.transform.SetParent(null);
+            avisoAtual.SetActive(true);
+            avisosAtuais.Add(avisoAtual);
+        }
 
         StartCoroutine(AguardarAvisoEContinuar(avisoDelay, angulo, direcao));
     }
@@ -58,7 +67,7 @@ public class FelicidadeLaser : MonoBehaviour
 
         currentLaser = Instantiate(laserPrefab, laserSpawnPoint.position, Quaternion.Euler(0, 0, angulo));
         currentLaser.transform.position += direcao * (currentLaser.transform.localScale.x / 2);
-        currentLaser.transform.localScale = new Vector3(comprimento, currentLaser.transform.localScale.y, currentLaser.transform.localScale.z);
+        currentLaser.transform.localScale = new Vector3(30f, currentLaser.transform.localScale.y, currentLaser.transform.localScale.z);
 
         Animator laserAnimator = currentLaser.GetComponent<Animator>();
         if (laserAnimator != null)
@@ -68,7 +77,12 @@ public class FelicidadeLaser : MonoBehaviour
 
         currentLaser.SetActive(true);
 
-        StartCoroutine(RemoverAvisoAposTempo(avisoAtual, laserDuracao));
+        foreach (var aviso in avisosAtuais)
+        {
+            StartCoroutine(RemoverAvisoAposTempo(aviso, laserDuracao));
+        }
+        avisosAtuais.Clear();
+
         StartCoroutine(DesativarLaserAposTempo(currentLaser, laserDuracao));
         laserRecarga = laserTempoRecarga;
     }

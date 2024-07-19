@@ -16,7 +16,7 @@ public static class DisparoArcanoRaycast
             {
                 // Disparo acertou um alvo!
                 alvo.gameObject.GetComponent<BossVida>().ReceberDano(dano);
-                UtilsClass.ShakeCamera(0.1f, .1f);
+                UtilsClass.ShakeCamera(0.1f, .035f);
                 break; // Para de verificar após acertar o alvo
             }
         }

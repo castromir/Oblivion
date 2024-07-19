@@ -1,23 +1,24 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using System;
 
-public class Feiticos : ScriptableObject
+public abstract class Feiticos : ScriptableObject
 {
     public string nome;
     public float tempoRecarga;
     public float tempoDuracao;
 
-    public event System.Action<GameObject> AoAtivarMagia;
-    public event System.Action<GameObject> AoDesativarMagia;
+    public event Action<GameObject> AoAtivarMagia;
+    public event Action<GameObject> AoDesativarMagia;
 
-    public virtual void Ativar(GameObject parente) 
-    {
-        AoAtivarMagia?.Invoke(parente);
-    }
+    public abstract void Ativar(GameObject parente);
+
     public virtual void RecargaComecar(GameObject parente)
     {
         AoDesativarMagia?.Invoke(parente);
     }
-}
 
+    protected void InvokeAoAtivarMagia(GameObject parente)
+    {
+        AoAtivarMagia?.Invoke(parente);
+    }
+}

@@ -34,10 +34,10 @@ public class Menu : MonoBehaviour
     public void Sair()
     {
         //se estiver jogando no editor da unity usar o comando abaixo, caso contrário, coloca-lo como comentário.
-        UnityEditor.EditorApplication.isPlaying = false;
+        //UnityEditor.EditorApplication.isPlaying = false;
 
         //Se o jogo estiver compilado usar comando abaixo.
-        //Application.Quit();
+        Application.Quit();
     }
 
     public void MostrarPainelCredito()

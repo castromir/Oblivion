@@ -344,6 +344,7 @@ GameObject:
   m_Component:
   - component: {fileID: 55537816}
   - component: {fileID: 55537818}
+  - component: {fileID: 55537819}
   - component: {fileID: 55537817}
   m_Layer: 5
   m_Name: Feitico (1)
@@ -362,7 +363,8 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.9999908, y: 0.9999908, z: 0.9999908}
-  m_Children: []
+  m_Children:
+  - {fileID: 561309423}
   m_Father: {fileID: 227928397}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -408,6 +410,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 55537815}
   m_CullTransparentMesh: 0
+--- !u!114 &55537819
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 55537815}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32aec325d1034ba42ab11c186c709e0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  iconeImagem: {fileID: 55537817}
+  tempoRecargaTexto: {fileID: 561309424}
+  guardaFeitico: {fileID: 164004493}
+  feiticoIndex: 1
 --- !u!1 &60868651
 GameObject:
   m_ObjectHideFlags: 0
@@ -644,6 +662,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ce0038be263d74d9b95eb7a5862c9f4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &164004493 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4520690331217355740, guid: 5e2a82902b6ea4c0b9b652322ffadcff,
+    type: 3}
+  m_PrefabInstance: {fileID: 766874357}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 164004487}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c8ea22aca2ab904ea6e1ac0c1a4a9f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &227928396
@@ -1127,6 +1157,87 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!1 &561309422
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 561309423}
+  - component: {fileID: 561309425}
+  - component: {fileID: 561309424}
+  m_Layer: 5
+  m_Name: Texto Recarga
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &561309423
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 561309422}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 55537816}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 1.27, y: -1.71}
+  m_SizeDelta: {x: 39.19, y: 41.82}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &561309424
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 561309422}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 30
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 0
+    m_MaxSize: 67
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 0
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: '
+
+'
+--- !u!222 &561309425
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 561309422}
+  m_CullTransparentMesh: 0
 --- !u!1001 &579170498
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4607,8 +4718,44 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4520690331217355740, guid: 5e2a82902b6ea4c0b9b652322ffadcff,
         type: 3}
+      propertyPath: feiticos.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4520690331217355740, guid: 5e2a82902b6ea4c0b9b652322ffadcff,
+        type: 3}
       propertyPath: atalho
       value: 32
+      objectReference: {fileID: 0}
+    - target: {fileID: 4520690331217355740, guid: 5e2a82902b6ea4c0b9b652322ffadcff,
+        type: 3}
+      propertyPath: tempoRecarga
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4520690331217355740, guid: 5e2a82902b6ea4c0b9b652322ffadcff,
+        type: 3}
+      propertyPath: tempoDuracao
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4520690331217355740, guid: 5e2a82902b6ea4c0b9b652322ffadcff,
+        type: 3}
+      propertyPath: feiticos.Array.data[0].feitico
+      value: 
+      objectReference: {fileID: 11400000, guid: 59f5f01a65528f04b85f243e1bb1a24d,
+        type: 2}
+    - target: {fileID: 4520690331217355740, guid: 5e2a82902b6ea4c0b9b652322ffadcff,
+        type: 3}
+      propertyPath: feiticos.Array.data[0].atalho
+      value: 32
+      objectReference: {fileID: 0}
+    - target: {fileID: 4520690331217355740, guid: 5e2a82902b6ea4c0b9b652322ffadcff,
+        type: 3}
+      propertyPath: feiticos.Array.data[0].tempoRecargaAtual
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4520690331217355740, guid: 5e2a82902b6ea4c0b9b652322ffadcff,
+        type: 3}
+      propertyPath: feiticos.Array.data[0].tempoDuracaoAtual
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 3339481644051735610, guid: 5e2a82902b6ea4c0b9b652322ffadcff,
         type: 3}
@@ -7961,17 +8108,17 @@ PrefabInstance:
     - target: {fileID: 7026983462970555132, guid: 4ba9d588ec69dab41b03c6b4921fba51,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.5
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 7026983462970555132, guid: 4ba9d588ec69dab41b03c6b4921fba51,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.5
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 7026983462970555132, guid: 4ba9d588ec69dab41b03c6b4921fba51,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.5
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 5687907916236459188, guid: 4ba9d588ec69dab41b03c6b4921fba51,
         type: 3}
