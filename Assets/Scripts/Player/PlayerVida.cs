@@ -1,6 +1,6 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerVida : MonoBehaviour
 {
@@ -38,6 +38,7 @@ public class PlayerVida : MonoBehaviour
                 playerLivroSR.enabled = false;
                 playerMovimento.enabled = false;
                 playerLivroAcoes.enabled = false;
+                StartCoroutine(HandleDeath());
             }
             else
             {
@@ -51,5 +52,11 @@ public class PlayerVida : MonoBehaviour
         consegueReceberDano = false;
         yield return new WaitForSeconds(danoTempoRecuperacao);
         consegueReceberDano = true;
+    }
+
+    private IEnumerator HandleDeath()
+    {
+        yield return new WaitForSeconds(2f);
+        SceneManager.LoadScene("Lobby");
     }
 }

@@ -13,7 +13,5 @@ MonoBehaviour:
   m_Name: Teleporte
   m_EditorClassIdentifier: Assembly-CSharp::Teleporte
   nome: Teleporte
-  tempoRecarga: 2
+  tempoRecarga: 5
   tempoDuracao: 0.25
-  testePrefab: {fileID: 727876075968478486, guid: 4bf6fb2b537806f46af655d6a2e44528,
-    type: 3}
