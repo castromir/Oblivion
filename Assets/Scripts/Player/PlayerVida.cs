@@ -12,6 +12,7 @@ public class PlayerVida : MonoBehaviour
     private bool consegueReceberDano = true;
     private Repulsao repulsao;
 
+
     public SpriteRenderer playerSR;
     public SpriteRenderer playerLivroSR;
     public IsometricPlayerMovementController playerMovimento;

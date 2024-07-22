@@ -4,17 +4,9 @@ using UnityEngine;
 
 public class GuardaFeitico : MonoBehaviour
 {
-    [System.Serializable]
-    public class FeiticoData
-    {
-        public Feiticos feitico;
-        public KeyCode atalho;
-        public FeiticoEstado estado;
-        public float tempoRecargaAtual;
-        public float tempoDuracaoAtual;
-    }
-
-    public List<FeiticoData> feiticos;
+    public Feiticos[] feiticos;  // Array de feitiços
+    public float tempoRecarga;
+    public float tempoDuracao;
 
     public enum FeiticoEstado
     {
@@ -22,41 +14,46 @@ public class GuardaFeitico : MonoBehaviour
         ativo,
         recarga
     }
+    public FeiticoEstado estado = FeiticoEstado.ativo;
 
-    private void Update()
+    public KeyCode atalho;
+
+    void Update()
     {
-        foreach (var fd in feiticos)
+        foreach (Feiticos feitico in feiticos)
         {
-            switch (fd.estado)
+            if (feitico == null) continue;
+
+            switch (estado)
             {
                 case FeiticoEstado.pronto:
-                    if (Input.GetKeyDown(fd.atalho))
+                    if (Input.GetKeyDown(atalho))
                     {
-                        fd.feitico.Ativar(gameObject);
-                        fd.estado = FeiticoEstado.ativo;
-                        fd.tempoDuracaoAtual = fd.feitico.tempoDuracao;
+                        feitico.Ativar(gameObject);
+                        estado = FeiticoEstado.ativo;
+                        tempoDuracao = feitico.tempoDuracao;
                     }
                     break;
                 case FeiticoEstado.ativo:
-                    if (fd.tempoDuracaoAtual > 0)
+                    if (tempoDuracao > 0)
                     {
-                        fd.tempoDuracaoAtual -= Time.deltaTime;
+                        tempoDuracao -= Time.deltaTime;
                     }
                     else
                     {
-                        fd.feitico.RecargaComecar(gameObject);
-                        fd.estado = FeiticoEstado.recarga;
-                        fd.tempoRecargaAtual = fd.feitico.tempoRecarga;
+                        feitico.RecargaComecar(gameObject);
+                        estado = FeiticoEstado.recarga;
+                        tempoRecarga = feitico.tempoRecarga;
                     }
                     break;
                 case FeiticoEstado.recarga:
-                    if (fd.tempoRecargaAtual > 0)
+                    if (tempoRecarga > 0)
                     {
-                        fd.tempoRecargaAtual -= Time.deltaTime;
+                        tempoRecarga -= Time.deltaTime;
                     }
                     else
                     {
-                        fd.estado = FeiticoEstado.pronto;
+                        estado = FeiticoEstado.pronto;
                     }
                     break;
             }

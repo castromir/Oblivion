@@ -105,4 +105,10 @@ public class FelicidadeLaser : MonoBehaviour
     {
         playerTransform = player;
     }
+
+    // Método para resetar o laser
+    public void ResetarLaser()
+    {
+        laserRecarga = laserTempoRecarga;
+    }
 }

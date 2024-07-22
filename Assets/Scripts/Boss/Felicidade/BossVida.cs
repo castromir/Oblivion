@@ -41,4 +41,5 @@ public class BossVida : MonoBehaviour
     {
         return vidaMaxima;
     }
+
 }

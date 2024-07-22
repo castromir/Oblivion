@@ -7,33 +7,57 @@ public class IconeFeitico : MonoBehaviour
     public Image iconeImagem;
     public Text tempoRecargaTexto;
     public GuardaFeitico guardaFeitico;
-    public int feiticoIndex; // Índice do feitiço na lista de feiticos do GuardaFeitico
-
-    private GuardaFeitico.FeiticoData feiticoData;
+    public GameObject playerMago;  // Referência ao objeto PlayerMago
 
     private void Start()
     {
-        guardaFeitico = GetComponent<GuardaFeitico>();
-        feiticoData = guardaFeitico.feiticos[feiticoIndex];
-        feiticoData.feitico.AoDesativarMagia += IniciarRecarga;
+        // Obtém o componente GuardaFeitico do objeto PlayerMago
+        if (playerMago != null)
+        {
+            guardaFeitico = playerMago.GetComponent<GuardaFeitico>();
+        }
+
+        if (guardaFeitico == null)
+        {
+            Debug.LogError("GuardaFeitico não foi encontrado no objeto PlayerMago.");
+            return;
+        }
+
+        if (guardaFeitico.feiticos.Length > 0 && guardaFeitico.feiticos[0] != null)
+        {
+            guardaFeitico.feiticos[0].AoDesativarMagia += IniciarRecarga;
+        }
+        else
+        {
+            Debug.LogError("Feitico não foi atribuído no GuardaFeitico.");
+        }
     }
 
     private void Update()
     {
-        if (feiticoData.estado == GuardaFeitico.FeiticoEstado.recarga)
+        if (guardaFeitico == null || guardaFeitico.feiticos.Length == 0 || guardaFeitico.feiticos[0] == null)
         {
-            AtualizarIconeRecarga(feiticoData.tempoRecargaAtual);
+            Debug.LogError("GuardaFeitico ou Feitico é nulo no Update.");
+            return;
+        }
+
+        if (guardaFeitico.estado == GuardaFeitico.FeiticoEstado.recarga)
+        {
+            AtualizarIconeRecarga(guardaFeitico.tempoRecarga);
         }
     }
 
     private void IniciarRecarga(GameObject parente)
     {
-        StartCoroutine(RecargaCoroutine(feiticoData.feitico.tempoRecarga));
+        StartCoroutine(RecargaCoroutine(guardaFeitico.feiticos[0].tempoRecarga));
     }
 
     private IEnumerator RecargaCoroutine(float duracao)
     {
-        iconeImagem.color = Color.gray;
+        if (iconeImagem != null)
+        {
+            iconeImagem.color = Color.gray;
+        }
 
         float tempoRestante = duracao;
         while (tempoRestante > 0)
@@ -43,12 +67,29 @@ public class IconeFeitico : MonoBehaviour
             yield return null;
         }
 
-        iconeImagem.color = Color.white;
-        tempoRecargaTexto.text = "";
+        if (iconeImagem != null)
+        {
+            iconeImagem.color = Color.white;
+        }
+
+        if (tempoRecargaTexto != null)
+        {
+            tempoRecargaTexto.text = "";  // Limpa o texto de recarga
+        }
     }
 
     private void AtualizarIconeRecarga(float tempoRestante)
     {
-        tempoRecargaTexto.text = Mathf.Ceil(tempoRestante).ToString();
+        if (tempoRecargaTexto != null)
+        {
+            if (tempoRestante > 0)
+            {
+                tempoRecargaTexto.text = Mathf.Ceil(tempoRestante).ToString();
+            }
+            else
+            {
+                tempoRecargaTexto.text = "";  // Limpa o texto de recarga se o tempo restante for zero ou menor
+            }
+        }
     }
 }

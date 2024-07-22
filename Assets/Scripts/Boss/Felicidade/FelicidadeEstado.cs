@@ -44,13 +44,20 @@ public class FelicidadeEstado : MonoBehaviour
         player = felicidade.player;
         bossVida = GetComponent<BossVida>();
         laser = GetComponent<FelicidadeLaser>();
-        laser.SetPlayerTransform(player.transform);  // Configurar o playerTransform no FelicidadeLaser
+        laser.SetPlayerTransform(player.transform);
     }
 
     void Start()
     {
         bossSR = GetComponent<SpriteRenderer>();
         corOriginal = bossSR.color;
+
+        velocidade = 3f;
+        laserDelayTempo = 1.5f;
+        investidaDelayTempo = 1.5f;
+        prepararInvestidaDelayTempo = 1f;
+
+        laser.ResetarLaser();
     }
 
     private void Update()
@@ -163,6 +170,7 @@ public class FelicidadeEstado : MonoBehaviour
         {
             numeroDeDisparos = 2;
         }
+
 
         for (int i = 0; i < numeroDeDisparos; i++)
         {
