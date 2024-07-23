@@ -25,21 +25,24 @@ public class GoToArenaFelicidade : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D other)
     {
-        if (tutorialScript.tutorialComplete)
-        {
-            if (other.CompareTag("Player"))
+        
+        
+           if (other.CompareTag("Player"))
             {
-                text.gameObject.SetActive(true);
+               if (tutorialScript.tutorialComplete)
+               {
+                    text.gameObject.SetActive(true);
+               }
 
-                if (Input.GetKeyDown(KeyCode.E))
-                {
+               if (Input.GetKeyDown(KeyCode.E))
+               {
                     arenaFeita = true;
                     text.gameObject.SetActive(false);
                     SceneManager.LoadSceneAsync(2); //0 Menu, 1 Lobby, 2 Arena Felicidade, 3 Arena Tristeza, 4 Arena raiva  
-                }
+               }
 
             }
-        }
+        
     }
 
     private void OnTriggerExit2D(Collider2D other)

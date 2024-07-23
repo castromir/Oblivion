@@ -4616,7 +4616,7 @@ MonoBehaviour:
   vidaAtual: 0
   isDead: 0
   bossSR: {fileID: 622907425}
-  bossMovimento: {fileID: 622907424}
+  boss: {fileID: 0}
 --- !u!114 &622907432
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4683,6 +4683,150 @@ MonoBehaviour:
   laserPrefab: {fileID: 1130116015}
   laserSpawnPoint: {fileID: 67045986}
   player: {fileID: 0}
+--- !u!1 &750834046
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 750834047}
+  - component: {fileID: 750834049}
+  - component: {fileID: 750834048}
+  m_Layer: 0
+  m_Name: LimiteDoTeleport
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &750834047
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 750834046}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.3528679, y: -6.82, z: 3.2695312}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &750834048
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 750834046}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b1e73e5fb501734eaeacd93ace4e45c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 164004487}
+--- !u!60 &750834049
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 750834046}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.34671634, y: 1.2427015}
+      - {x: -0.916385, y: 1.00245}
+      - {x: -1.8476722, y: 1.5128603}
+      - {x: -2.3566003, y: 1.2240782}
+      - {x: -3.8514712, y: 2.0172467}
+      - {x: -4.329281, y: 1.7477036}
+      - {x: -5.8069735, y: 2.509777}
+      - {x: -6.3157353, y: 2.2379804}
+      - {x: -9.977053, y: 4.077711}
+      - {x: -9.449338, y: 4.3309364}
+      - {x: -10.970239, y: 5.0718164}
+      - {x: -10.421086, y: 5.289667}
+      - {x: -12.014297, y: 6.0284715}
+      - {x: -11.454225, y: 6.3025136}
+      - {x: -12.473365, y: 6.7994094}
+      - {x: -11.993345, y: 7.048359}
+      - {x: -12.557748, y: 7.307081}
+      - {x: -11.524813, y: 7.8122096}
+      - {x: -12.048995, y: 8.068265}
+      - {x: -10.53701, y: 8.7900305}
+      - {x: -10.992067, y: 9.06345}
+      - {x: -9.528932, y: 9.810961}
+      - {x: -9.98483, y: 10.037432}
+      - {x: -6.352154, y: 11.892826}
+      - {x: -5.8286605, y: 11.657738}
+      - {x: -4.282574, y: 12.374426}
+      - {x: -3.8479674, y: 12.148227}
+      - {x: -2.2849991, y: 12.874916}
+      - {x: -1.8706102, y: 12.6212635}
+      - {x: -0.8013502, y: 13.156513}
+      - {x: -0.3936735, y: 12.908821}
+      - {x: 0.18004596, y: 13.17072}
+      - {x: 1.1416948, y: 12.64933}
+      - {x: 1.5905762, y: 12.8853855}
+      - {x: 3.179421, y: 12.156545}
+      - {x: 3.6214874, y: 12.388075}
+      - {x: 5.1550875, y: 11.633928}
+      - {x: 5.649333, y: 11.883274}
+      - {x: 9.269462, y: 10.060382}
+      - {x: 8.840988, y: 9.797761}
+      - {x: 10.309132, y: 9.104616}
+      - {x: 9.763207, y: 8.804098}
+      - {x: 11.287107, y: 8.035445}
+      - {x: 10.727422, y: 7.801435}
+      - {x: 11.735496, y: 7.301122}
+      - {x: 11.246891, y: 7.057644}
+      - {x: 11.7214575, y: 6.817408}
+      - {x: 10.710112, y: 6.3195877}
+      - {x: 11.230473, y: 6.071774}
+      - {x: 9.709086, y: 5.301841}
+      - {x: 10.231383, y: 5.0577106}
+      - {x: 8.727689, y: 4.31269}
+      - {x: 9.269316, y: 4.0432715}
+      - {x: 5.6027155, y: 2.228424}
+      - {x: 5.1495066, y: 2.522018}
+      - {x: 3.6286926, y: 1.7565122}
+      - {x: 3.133899, y: 2.0201044}
+      - {x: 1.632868, y: 1.2436137}
+      - {x: 1.1407044, y: 1.5263171}
+      - {x: 0.1950869, y: 1.0543122}
+      - {x: 11.360479, y: -4.8640637}
+      - {x: 16.632103, y: -0.22959137}
+      - {x: 19.899378, y: 4.9455667}
+      - {x: 18.037548, y: 12.444588}
+      - {x: 13.555586, y: 17.365692}
+      - {x: 2.166805, y: 20.99214}
+      - {x: -4.8675065, y: 20.63294}
+      - {x: -10.991615, y: 19.726469}
+      - {x: -16.74518, y: 16.43985}
+      - {x: -20.732037, y: 10.003828}
+      - {x: -19.864925, y: 2.325962}
+      - {x: -8.546194, y: -3.6754413}
+      - {x: 0.18903935, y: -5.6438136}
+      - {x: 11.595319, y: -4.5781302}
 --- !u!1001 &766874357
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4758,12 +4902,6 @@ PrefabInstance:
       propertyPath: estado
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3339481644051735614, guid: 5e2a82902b6ea4c0b9b652322ffadcff,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 1e12903cc14152a4cad1e6458444a8a4,
-        type: 3}
     - target: {fileID: 3339481645408498932, guid: 5e2a82902b6ea4c0b9b652322ffadcff,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4819,6 +4957,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3339481644051735614, guid: 5e2a82902b6ea4c0b9b652322ffadcff,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 1e12903cc14152a4cad1e6458444a8a4,
+        type: 3}
     - target: {fileID: 3339481643503506217, guid: 5e2a82902b6ea4c0b9b652322ffadcff,
         type: 3}
       propertyPath: m_LocalPosition.x

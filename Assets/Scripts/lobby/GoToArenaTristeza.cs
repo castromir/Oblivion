@@ -33,14 +33,16 @@ public class GoToArenaTristeza : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D other)
     {
-        if (tutorialScript.tutorialComplete)
-        {
+        
+        
             if (arenafeliciaScript.arenaFeita)
             {
                 if (other.CompareTag("Player"))
                 {
-                    text.gameObject.SetActive(true);
-
+                    if (tutorialScript.tutorialComplete)
+                    {
+                        text.gameObject.SetActive(true);
+                    }
                     if (Input.GetKeyDown(KeyCode.E))
                     {
                         text.gameObject.SetActive(false);
@@ -52,10 +54,13 @@ public class GoToArenaTristeza : MonoBehaviour
             {
                 if (other.CompareTag("Player"))
                 {
+                    if (tutorialScript.tutorialComplete)
+                    {
                     textNaoPode.gameObject.SetActive(true);
+                    }
                 }
             }
-        }
+        
     }
 
 
