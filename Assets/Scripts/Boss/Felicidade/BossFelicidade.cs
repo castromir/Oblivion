@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class BossFelicidade : Boss
 {
@@ -24,11 +22,10 @@ public class BossFelicidade : Boss
 
     void Update()
     {
-        
         distance = Vector2.Distance(transform.position, player.transform.position);
         Vector2 direction = player.transform.position - transform.position;
         direction.Normalize();
-        if (distance < acceptableDistance )
+        if (distance < acceptableDistance)
         {
             timer += Time.deltaTime;
             if (timer > timerDistance)
@@ -37,7 +34,6 @@ public class BossFelicidade : Boss
                 timer = 0f;
             }
         }
-        
     }
 
     public override string[] GetDirecoesEstaticas()
@@ -47,14 +43,14 @@ public class BossFelicidade : Boss
 
     public override string[] GetDirecoesHabilidade()
     {
-        return new string[] { "Felicidade Investida N", "Felicidade Investida O", "Felicidade Investida S", "Felicidade Investida L"};
+        return new string[] { "Felicidade Investida N", "Felicidade Investida O", "Felicidade Investida S", "Felicidade Investida L" };
     }
 
     public void MoverParaPosicao(Vector3 targetPosition, Vector2 direcao, float velocidade)
     {
         Renderizar(direcao, false);
         transform.position = Vector2.MoveTowards(this.transform.position, targetPosition, velocidade * Time.deltaTime);
-    }    
+    }
 
     public void Renderizar(Vector2 direcao, bool investida)
     {

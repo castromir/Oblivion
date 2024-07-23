@@ -10,8 +10,7 @@ public class BossVida : MonoBehaviour
     public bool isDead = false;
 
     public SpriteRenderer bossSR;
-    public BossFelicidade bossMovimento;
-
+    public Boss boss; // Use the base class Boss here.
 
     private Collider2D[] colliders;
 
@@ -29,7 +28,7 @@ public class BossVida : MonoBehaviour
         {
             isDead = true;
             bossSR.enabled = false;
-            bossMovimento.enabled = false;
+            boss.enabled = false; // Disable the base class component.
 
             foreach (var collider in colliders)
             {
@@ -37,9 +36,9 @@ public class BossVida : MonoBehaviour
             }
         }
     }
+
     public int GetVidaMaxima()
     {
         return vidaMaxima;
     }
-
 }
