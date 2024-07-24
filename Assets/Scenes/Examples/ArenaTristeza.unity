@@ -920,7 +920,11 @@ MonoBehaviour:
   auraPrefab: {fileID: 954424875334829178, guid: ad566c586bbfec24b984c06bd47d3314,
     type: 3}
   auraPosicao: {fileID: 1117087473}
-  auraScale: 2.2
+  auraScale: 1
+  avisoPrefab: {fileID: 987461887021870348, guid: 1ddfee43161ed2744a472fc680bc1d93,
+    type: 3}
+  intervaloContaminacao: 2
+  tempoContaminacao: 3
 --- !u!212 &239016534
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1512,6 +1516,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 59f5f01a65528f04b85f243e1bb1a24d,
         type: 2}
+    - target: {fileID: 3339481644051735614, guid: 5e2a82902b6ea4c0b9b652322ffadcff,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 1e12903cc14152a4cad1e6458444a8a4,
+        type: 3}
     - target: {fileID: 4520690331217355740, guid: 5e2a82902b6ea4c0b9b652322ffadcff,
         type: 3}
       propertyPath: feiticos.Array.size
@@ -1619,12 +1629,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3339481644051735614, guid: 5e2a82902b6ea4c0b9b652322ffadcff,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 1e12903cc14152a4cad1e6458444a8a4,
-        type: 3}
     - target: {fileID: 3339481643503506217, guid: 5e2a82902b6ea4c0b9b652322ffadcff,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -17008,12 +17012,12 @@ PrefabInstance:
     - target: {fileID: 4392688208590565962, guid: c90eee56c237d884a8482e4119247970,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.164
+      value: -0.058
       objectReference: {fileID: 0}
     - target: {fileID: 4392688208590565962, guid: c90eee56c237d884a8482e4119247970,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.213
+      value: -0.125
       objectReference: {fileID: 0}
     - target: {fileID: 4392688208590565962, guid: c90eee56c237d884a8482e4119247970,
         type: 3}

@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Aura
+  m_Name: Caveira
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -20,15 +20,9 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: 21300000, guid: 534eb415d71085e479d154bda197e1ff, type: 3}
+      value: {fileID: 21300000, guid: 049b1aaebf877184baa9f2843ea929a8, type: 3}
     - time: 0.1
-      value: {fileID: 21300000, guid: 6b54d558b8482ae4c8adb307e2fdf4d9, type: 3}
-    - time: 0.2
-      value: {fileID: 21300000, guid: 556e2a3a320476b4281f80c6beab7f97, type: 3}
-    - time: 0.3
-      value: {fileID: 21300000, guid: 5069d1fa0d198a74cb8bf009321b9060, type: 3}
-    - time: 0.4
-      value: {fileID: 21300000, guid: 49c744296dd6af24785341e8f892d489, type: 3}
+      value: {fileID: 21300000, guid: 074794f3038b12f49bc48ebd570521e2, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -48,17 +42,14 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: 21300000, guid: 534eb415d71085e479d154bda197e1ff, type: 3}
-    - {fileID: 21300000, guid: 6b54d558b8482ae4c8adb307e2fdf4d9, type: 3}
-    - {fileID: 21300000, guid: 556e2a3a320476b4281f80c6beab7f97, type: 3}
-    - {fileID: 21300000, guid: 5069d1fa0d198a74cb8bf009321b9060, type: 3}
-    - {fileID: 21300000, guid: 49c744296dd6af24785341e8f892d489, type: 3}
+    - {fileID: 21300000, guid: 049b1aaebf877184baa9f2843ea929a8, type: 3}
+    - {fileID: 21300000, guid: 074794f3038b12f49bc48ebd570521e2, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.5
+    m_StopTime: 0.2
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0

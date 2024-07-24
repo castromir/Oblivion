@@ -17,11 +17,9 @@ public class AuraDano : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("player entrou");
             // Inicia o Coroutine para aplicar dano
             danoCoroutine = StartCoroutine(AplicarDano(playerVida));
         }
-        else Debug.Log("player n entrou");
     }
 
     private void OnTriggerExit2D(Collider2D other)
