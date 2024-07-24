@@ -7659,8 +7659,34 @@ PrefabInstance:
         type: 2}
     - target: {fileID: 4520690331217355740, guid: 5e2a82902b6ea4c0b9b652322ffadcff,
         type: 3}
+      propertyPath: feiticos.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4520690331217355740, guid: 5e2a82902b6ea4c0b9b652322ffadcff,
+        type: 3}
       propertyPath: atalho
       value: 32
+      objectReference: {fileID: 0}
+    - target: {fileID: 4520690331217355740, guid: 5e2a82902b6ea4c0b9b652322ffadcff,
+        type: 3}
+      propertyPath: tempoRecarga
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4520690331217355740, guid: 5e2a82902b6ea4c0b9b652322ffadcff,
+        type: 3}
+      propertyPath: feiticos.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 59f5f01a65528f04b85f243e1bb1a24d,
+        type: 2}
+    - target: {fileID: 4520690331217355740, guid: 5e2a82902b6ea4c0b9b652322ffadcff,
+        type: 3}
+      propertyPath: tempoDuracao
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4520690331217355740, guid: 5e2a82902b6ea4c0b9b652322ffadcff,
+        type: 3}
+      propertyPath: estado
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3339481645408498932, guid: 5e2a82902b6ea4c0b9b652322ffadcff,
         type: 3}
@@ -19758,6 +19784,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 164004487}
+  safeSpawnPoint: {x: 0, y: -2}
+  obstacleLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!60 &1819257579
 PolygonCollider2D:
   m_ObjectHideFlags: 0
