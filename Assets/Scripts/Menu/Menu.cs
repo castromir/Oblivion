@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class Menu : MonoBehaviour
 {
     public GameObject painelCreditos;
+    public AudioSource hoverSound;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -48,5 +51,13 @@ public class Menu : MonoBehaviour
     public void VoltarMenu()
     {
         painelCreditos.SetActive(false);
+    }
+
+    public void PlayHoverSound()
+    {
+        if (hoverSound != null)
+        {
+            hoverSound.Play();
+        }
     }
 }
