@@ -8,7 +8,9 @@ using UnityEngine.EventSystems;
 public class Menu : MonoBehaviour
 {
     public GameObject painelCreditos;
+    public GameObject painelOpcoes;
     public AudioSource hoverSound;
+    public AudioSource musica;
 
     // Start is called before the first frame update
     void Start()
@@ -47,10 +49,19 @@ public class Menu : MonoBehaviour
     {
         painelCreditos.SetActive(true);
     }
+    public void MostrarPainelOpcoes()
+    {
+        painelOpcoes.SetActive(true);
+    }
 
-    public void VoltarMenu()
+
+    public void VoltarMenuCreditos()
     {
         painelCreditos.SetActive(false);
+    }
+    public void VoltarMenuOpcoes()
+    {
+        painelOpcoes.SetActive(false);
     }
 
     public void PlayHoverSound()
@@ -59,5 +70,18 @@ public class Menu : MonoBehaviour
         {
             hoverSound.Play();
         }
+    }
+
+    public void VolumeMusica(float value)
+    {
+        musica.volume = value;
+        float valorMusica = value;
+        PlayerPrefs.SetFloat("musica", value);
+    }
+    public void VolumeEfeitos(float value)
+    {
+        hoverSound.volume = value;
+        float valorEfeito = value;
+        PlayerPrefs.SetFloat("efeito", value);
     }
 }

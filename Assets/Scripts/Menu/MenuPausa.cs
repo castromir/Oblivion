@@ -7,9 +7,25 @@ using UnityEngine.UI;
 
 public class MenuPausa : MonoBehaviour
 {
+    public GameObject painelOpcoes;
+    public AudioSource hoverSound;
+    public AudioSource musica;
     public GameObject painelPause;
-    // Start is called before the first frame update
-  
+    private float valorMusica;
+    private float valorEfeito;
+    public Slider efeitoSlider;
+    public Slider musicaSlider;
+
+
+    void Start()
+    {
+        float valorMusica = PlayerPrefs.GetFloat("musica");
+        float valorEfeito = PlayerPrefs.GetFloat("efeito");
+        VolumeMusica(valorMusica);
+        VolumeEfeitos(valorEfeito);
+        efeitoSlider.value = valorEfeito;
+        musicaSlider.value = valorMusica;
+    }
 
     // Update is called once per frame
     void Update()
@@ -23,13 +39,13 @@ public class MenuPausa : MonoBehaviour
     private void Pause()
     {
         painelPause.SetActive(true);
-        Time.timeScale = 0;
+        //Time.timeScale = 0;
     }
 
     public void Continue()
     {
         painelPause.SetActive(false);
-        Time.timeScale = 1;
+        //Time.timeScale = 1;
     }
 
     public void Sair()
@@ -40,4 +56,32 @@ public class MenuPausa : MonoBehaviour
         //Se o jogo estiver compilado usar comando abaixo.
         //Application.Quit();
     }
+    public void VolumeMusica(float value)
+    {
+        musica.volume = value;
+        float valorMusica = value;
+        PlayerPrefs.SetFloat("musica", value);
+    }
+    public void VolumeEfeitos(float value)
+    {
+        hoverSound.volume = value;
+        float valorEfeito = value;
+        PlayerPrefs.SetFloat("efeito", value);
+    }
+    public void VoltarMenuOpcoes()
+    {
+        painelOpcoes.SetActive(false);
+    }
+    public void MostrarPainelOpcoes()
+    {
+        painelOpcoes.SetActive(true);
+    }
+    public void PlayHoverSound()
+    {
+        if (hoverSound != null)
+        {
+            hoverSound.Play();
+        }
+    }
 }
+
