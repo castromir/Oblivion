@@ -15,7 +15,7 @@ public class IconeFeitico : MonoBehaviour
     {
         if (guardaFeitico == null)
         {
-            Debug.LogError("GuardaFeitico não foi atribuído.");
+            //Debug.LogError("GuardaFeitico não foi atribuído.");
             return;
         }
 
