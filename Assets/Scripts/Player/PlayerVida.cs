@@ -10,9 +10,9 @@ public class PlayerVida : MonoBehaviour
 
     public int vidaAtual;
     private bool consegueReceberDano = true;
+    private bool invulneravelFeitico = false;  // Invulnerabilidade causada pelo feitiço Euforia
     private Repulsao repulsao;
     private Color corOriginal;
-
 
     public SpriteRenderer playerSR;
     public SpriteRenderer playerLivroSR;
@@ -32,7 +32,7 @@ public class PlayerVida : MonoBehaviour
 
     public void ReceberDano()
     {
-        if (consegueReceberDano)
+        if (consegueReceberDano && !invulneravelFeitico)
         {
             vidaAtual -= 1;
             if (vidaAtual <= 0)
@@ -68,6 +68,30 @@ public class PlayerVida : MonoBehaviour
     {
         playerSR.color = Color.red;
         yield return new WaitForSeconds(0.5f);
+        playerSR.color = corOriginal;
+    }
+
+    public void AtivarEuforia()
+    {
+        StartCoroutine(EuforiaCoroutine());
+    }
+
+    private IEnumerator EuforiaCoroutine()
+    {
+        invulneravelFeitico = true;
+        float duracaoEuforia = 2f;
+        float tempoRestante = duracaoEuforia;
+
+        while (tempoRestante > 0)
+        {
+            playerSR.color = Color.yellow;
+            yield return new WaitForSeconds(0.1f);
+            playerSR.color = corOriginal;
+            yield return new WaitForSeconds(0.1f);
+            tempoRestante -= 0.2f;
+        }
+
+        invulneravelFeitico = false;
         playerSR.color = corOriginal;
     }
 }

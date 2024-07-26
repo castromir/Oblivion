@@ -1,12 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public class GuardaFeitico : MonoBehaviour
 {
-    public Feiticos[] feiticos;  // Array de feitiços
-    public float tempoRecarga;
-    public float tempoDuracao;
+    public FeiticoEstadoInfo[] feiticos;  // Array de estados de feitiços
 
     public enum FeiticoEstado
     {
@@ -14,60 +11,55 @@ public class GuardaFeitico : MonoBehaviour
         ativo,
         recarga
     }
-    public FeiticoEstado estado = FeiticoEstado.pronto;  // Inicializa como pronto
-
-    public KeyCode atalho;
 
     private void OnEnable()
     {
         // Inicializa o estado dos feitiços
-        foreach (Feiticos feitico in feiticos)
+        for (int i = 0; i < feiticos.Length; i++)
         {
-            if (feitico == null) continue;
+            if (feiticos[i].feitico == null) continue;
 
-            feitico.Inicializar();
+            feiticos[i].feitico.Inicializar();
+            feiticos[i].estado = FeiticoEstado.pronto;  // Inicializa o estado como pronto
         }
-
-        // Define o estado inicial do GuardaFeitico
-        estado = FeiticoEstado.pronto;
     }
 
     void Update()
     {
-        foreach (Feiticos feitico in feiticos)
+        for (int i = 0; i < feiticos.Length; i++)
         {
-            if (feitico == null) continue;
+            if (feiticos[i].feitico == null) continue;
 
-            switch (estado)
+            switch (feiticos[i].estado)
             {
                 case FeiticoEstado.pronto:
-                    if (Input.GetKeyDown(atalho))
+                    if (Input.GetKeyDown(feiticos[i].atalho))
                     {
-                        feitico.Ativar(gameObject);
-                        estado = FeiticoEstado.ativo;
-                        tempoDuracao = feitico.tempoDuracao;
+                        feiticos[i].feitico.Ativar(gameObject);
+                        feiticos[i].estado = FeiticoEstado.ativo;
+                        feiticos[i].tempoDuracao = feiticos[i].feitico.tempoDuracao;
                     }
                     break;
                 case FeiticoEstado.ativo:
-                    if (tempoDuracao > 0)
+                    if (feiticos[i].tempoDuracao > 0)
                     {
-                        tempoDuracao -= Time.deltaTime;
+                        feiticos[i].tempoDuracao -= Time.deltaTime;
                     }
                     else
                     {
-                        feitico.RecargaComecar(gameObject);
-                        estado = FeiticoEstado.recarga;
-                        tempoRecarga = feitico.tempoRecarga;
+                        feiticos[i].feitico.RecargaComecar(gameObject);
+                        feiticos[i].estado = FeiticoEstado.recarga;
+                        feiticos[i].tempoRecarga = feiticos[i].feitico.tempoRecarga;
                     }
                     break;
                 case FeiticoEstado.recarga:
-                    if (tempoRecarga > 0)
+                    if (feiticos[i].tempoRecarga > 0)
                     {
-                        tempoRecarga -= Time.deltaTime;
+                        feiticos[i].tempoRecarga -= Time.deltaTime;
                     }
                     else
                     {
-                        estado = FeiticoEstado.pronto;
+                        feiticos[i].estado = FeiticoEstado.pronto;
                     }
                     break;
             }
@@ -77,11 +69,11 @@ public class GuardaFeitico : MonoBehaviour
     private void OnDestroy()
     {
         // Desinscrever-se de eventos
-        foreach (Feiticos feitico in feiticos)
+        for (int i = 0; i < feiticos.Length; i++)
         {
-            if (feitico == null) continue;
+            if (feiticos[i].feitico == null) continue;
 
-            feitico.DesinscreverEventos();
+            feiticos[i].feitico.DesinscreverEventos();
         }
     }
 }

@@ -7,27 +7,22 @@ public class IconeFeitico : MonoBehaviour
     public Image iconeImagem;
     public Text tempoRecargaTexto;
     public GuardaFeitico guardaFeitico;
-    public GameObject playerMago;  // Referência ao objeto PlayerMago
+    public int indexFeitico = 0;  // Índice do feitiço a ser monitorado
 
     private Coroutine recargaCoroutine;
 
     private void OnEnable()
     {
-        if (playerMago != null)
-        {
-            guardaFeitico = playerMago.GetComponent<GuardaFeitico>();
-        }
-
         if (guardaFeitico == null)
         {
-            Debug.LogError("GuardaFeitico não foi encontrado no objeto PlayerMago.");
+            Debug.LogError("GuardaFeitico não foi atribuído.");
             return;
         }
 
-        if (guardaFeitico.feiticos.Length > 0 && guardaFeitico.feiticos[0] != null)
+        if (guardaFeitico.feiticos.Length > 0 && guardaFeitico.feiticos[indexFeitico].feitico != null)
         {
-            guardaFeitico.feiticos[0].AoDesativarMagia -= IniciarRecarga;
-            guardaFeitico.feiticos[0].AoDesativarMagia += IniciarRecarga;
+            guardaFeitico.feiticos[indexFeitico].feitico.AoDesativarMagia -= IniciarRecarga;
+            guardaFeitico.feiticos[indexFeitico].feitico.AoDesativarMagia += IniciarRecarga;
         }
         else
         {
@@ -39,9 +34,9 @@ public class IconeFeitico : MonoBehaviour
 
     private void OnDestroy()
     {
-        if (guardaFeitico != null && guardaFeitico.feiticos.Length > 0 && guardaFeitico.feiticos[0] != null)
+        if (guardaFeitico != null && guardaFeitico.feiticos.Length > 0 && guardaFeitico.feiticos[indexFeitico].feitico != null)
         {
-            guardaFeitico.feiticos[0].AoDesativarMagia -= IniciarRecarga;
+            guardaFeitico.feiticos[indexFeitico].feitico.AoDesativarMagia -= IniciarRecarga;
         }
 
         if (recargaCoroutine != null)
@@ -52,14 +47,20 @@ public class IconeFeitico : MonoBehaviour
 
     private void Update()
     {
-        if (guardaFeitico == null || guardaFeitico.feiticos.Length == 0 || guardaFeitico.feiticos[0] == null)
+        if (guardaFeitico == null || guardaFeitico.feiticos.Length == 0 || guardaFeitico.feiticos[indexFeitico].feitico == null)
         {
             return;
         }
 
-        if (guardaFeitico.estado == GuardaFeitico.FeiticoEstado.recarga)
+        var feiticoInfo = guardaFeitico.feiticos[indexFeitico];
+
+        if (feiticoInfo.estado == GuardaFeitico.FeiticoEstado.recarga)
         {
-            AtualizarIconeRecarga(guardaFeitico.tempoRecarga);
+            AtualizarIconeRecarga(feiticoInfo.tempoRecarga);
+        }
+        else if (feiticoInfo.estado == GuardaFeitico.FeiticoEstado.pronto)
+        {
+            AtualizarIconeRecarga(0);
         }
     }
 
@@ -69,7 +70,7 @@ public class IconeFeitico : MonoBehaviour
         {
             StopCoroutine(recargaCoroutine);
         }
-        recargaCoroutine = StartCoroutine(RecargaCoroutine(guardaFeitico.feiticos[0].tempoRecarga));
+        recargaCoroutine = StartCoroutine(RecargaCoroutine(guardaFeitico.feiticos[indexFeitico].feitico.tempoRecarga));
     }
 
     private IEnumerator RecargaCoroutine(float duracao)
