@@ -9,7 +9,7 @@ public class GoToArenaFelicidade : MonoBehaviour
     public Text text;
     public GameObject tutorial;
     private Tutorial tutorialScript;
-    public bool arenaFeita = false;
+    public static bool arenaFelicidadeFeita = false;
 
     void Start()
     {
@@ -36,9 +36,9 @@ public class GoToArenaFelicidade : MonoBehaviour
 
                if (Input.GetKeyDown(KeyCode.E))
                {
-                    arenaFeita = true;
                     text.gameObject.SetActive(false);
-                    SceneManager.LoadSceneAsync(2); //0 Menu, 1 Lobby, 2 Arena Felicidade, 3 Arena Tristeza, 4 Arena raiva  
+                    SceneManager.LoadScene(2); //0 Menu, 1 Lobby, 2 Arena Felicidade, 3 Arena Tristeza, 4 Arena raiva  
+                    
                }
 
             }

@@ -11,6 +11,7 @@ public class PlayerVida : MonoBehaviour
     public int vidaAtual;
     private bool consegueReceberDano = true;
     private Repulsao repulsao;
+    private Color corOriginal;
 
 
     public SpriteRenderer playerSR;
@@ -26,6 +27,7 @@ public class PlayerVida : MonoBehaviour
     private void Start()
     {
         vidaAtual = vidaMaxima;
+        corOriginal = playerSR.color;
     }
 
     public void ReceberDano()
@@ -43,6 +45,7 @@ public class PlayerVida : MonoBehaviour
             }
             else
             {
+                StartCoroutine(VisualDano());
                 StartCoroutine(TempoDeInvulnerabilidade());
             }
         }
@@ -59,5 +62,12 @@ public class PlayerVida : MonoBehaviour
     {
         yield return new WaitForSeconds(2f);
         SceneManager.LoadScene("Lobby");
+    }
+
+    private IEnumerator VisualDano()
+    {
+        playerSR.color = Color.red;
+        yield return new WaitForSeconds(0.5f);
+        playerSR.color = corOriginal;
     }
 }

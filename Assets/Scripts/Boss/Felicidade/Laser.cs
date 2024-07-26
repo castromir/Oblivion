@@ -5,9 +5,11 @@ public class Laser : MonoBehaviour
 {
     public PlayerVida playerVida;
 
-    public float duracao = 1f;  // Duração do laser em segundos
+    public float duracao = .2f;  // Duração do laser em segundos
     public float velocidade = 10f;  // Velocidade do laser
     private Vector3 direcao;
+
+    private Coroutine desativarCoroutine;
 
     private void Awake()
     {
@@ -16,7 +18,15 @@ public class Laser : MonoBehaviour
 
     private void OnEnable()
     {
-        StartCoroutine(DesativarAposDuracao());
+        desativarCoroutine = StartCoroutine(DesativarAposDuracao());
+    }
+
+    private void OnDisable()
+    {
+        if (desativarCoroutine != null)
+        {
+            StopCoroutine(desativarCoroutine);
+        }
     }
 
     private void Update()
@@ -39,10 +49,16 @@ public class Laser : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            // Acessa o componente PlayerVida e chama o método ReceberDano
-            
+            if (playerVida == null)
+            {
+                playerVida = collision.GetComponent<PlayerVida>();
+            }
+
+            if (playerVida != null)
+            {
                 playerVida.ReceberDano();
                 Debug.Log("Player atingido pelo laser!");
+            }
         }
     }
 }

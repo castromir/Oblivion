@@ -625,8 +625,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   vidaAtual: 1
   vidaMaxima: 3
-  slotVidaVazio: {fileID: 21300000, guid: 5fc8db7d37ad0864f94f16b9734094b2, type: 3}
-  slotVidaCheio: {fileID: 21300000, guid: 28bbd66b38277f148a9b2330ce406e27, type: 3}
+  slotVidaVazio: {fileID: 21300000, guid: 94e8a690d0c49b34fba5ada7c4d0da72, type: 3}
+  slotVidaCheio: {fileID: 21300000, guid: 65e6f42df2626fe4b8f98cffaa5016de, type: 3}
   slotsVida:
   - {fileID: 1354762135}
   - {fileID: 818128328}
@@ -991,8 +991,8 @@ MonoBehaviour:
   auraScale: 1
   avisoPrefab: {fileID: 987461887021870348, guid: 1ddfee43161ed2744a472fc680bc1d93,
     type: 3}
-  intervaloContaminacao: 2
-  tempoContaminacao: 3
+  intervaloContaminacao: 0.7
+  tempoContaminacao: 2
 --- !u!82 &239016532
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1680,12 +1680,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 59f5f01a65528f04b85f243e1bb1a24d,
         type: 2}
-    - target: {fileID: 3339481644051735614, guid: 5e2a82902b6ea4c0b9b652322ffadcff,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 1e12903cc14152a4cad1e6458444a8a4,
-        type: 3}
     - target: {fileID: 4520690331217355740, guid: 5e2a82902b6ea4c0b9b652322ffadcff,
         type: 3}
       propertyPath: feiticos.Array.size
@@ -1738,6 +1732,12 @@ PrefabInstance:
       propertyPath: estado
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3339481644051735614, guid: 5e2a82902b6ea4c0b9b652322ffadcff,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 1e12903cc14152a4cad1e6458444a8a4,
+        type: 3}
     - target: {fileID: 3339481645408498932, guid: 5e2a82902b6ea4c0b9b652322ffadcff,
         type: 3}
       propertyPath: m_LocalPosition.x

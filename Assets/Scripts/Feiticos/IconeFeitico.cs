@@ -9,9 +9,10 @@ public class IconeFeitico : MonoBehaviour
     public GuardaFeitico guardaFeitico;
     public GameObject playerMago;  // Referência ao objeto PlayerMago
 
-    private void Start()
+    private Coroutine recargaCoroutine;
+
+    private void OnEnable()
     {
-        // Obtém o componente GuardaFeitico do objeto PlayerMago
         if (playerMago != null)
         {
             guardaFeitico = playerMago.GetComponent<GuardaFeitico>();
@@ -25,11 +26,27 @@ public class IconeFeitico : MonoBehaviour
 
         if (guardaFeitico.feiticos.Length > 0 && guardaFeitico.feiticos[0] != null)
         {
+            guardaFeitico.feiticos[0].AoDesativarMagia -= IniciarRecarga;
             guardaFeitico.feiticos[0].AoDesativarMagia += IniciarRecarga;
         }
         else
         {
             Debug.LogError("Feitico não foi atribuído no GuardaFeitico.");
+        }
+
+        AtualizarIconeRecarga(0);
+    }
+
+    private void OnDestroy()
+    {
+        if (guardaFeitico != null && guardaFeitico.feiticos.Length > 0 && guardaFeitico.feiticos[0] != null)
+        {
+            guardaFeitico.feiticos[0].AoDesativarMagia -= IniciarRecarga;
+        }
+
+        if (recargaCoroutine != null)
+        {
+            StopCoroutine(recargaCoroutine);
         }
     }
 
@@ -37,7 +54,6 @@ public class IconeFeitico : MonoBehaviour
     {
         if (guardaFeitico == null || guardaFeitico.feiticos.Length == 0 || guardaFeitico.feiticos[0] == null)
         {
-            Debug.LogError("GuardaFeitico ou Feitico é nulo no Update.");
             return;
         }
 
@@ -49,7 +65,11 @@ public class IconeFeitico : MonoBehaviour
 
     private void IniciarRecarga(GameObject parente)
     {
-        StartCoroutine(RecargaCoroutine(guardaFeitico.feiticos[0].tempoRecarga));
+        if (recargaCoroutine != null)
+        {
+            StopCoroutine(recargaCoroutine);
+        }
+        recargaCoroutine = StartCoroutine(RecargaCoroutine(guardaFeitico.feiticos[0].tempoRecarga));
     }
 
     private IEnumerator RecargaCoroutine(float duracao)

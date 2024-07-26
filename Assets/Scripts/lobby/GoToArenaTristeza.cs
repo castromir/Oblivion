@@ -12,13 +12,13 @@ public class GoToArenaTristeza : MonoBehaviour
     private Tutorial tutorialScript;
 
     public GameObject arenaFelicidade;
-    private GoToArenaFelicidade arenafeliciaScript;
+    private GoToArenaFelicidade arenafelicidade;
 
 
     void Start()
     {
         tutorialScript = tutorial.GetComponent<Tutorial>();
-        arenafeliciaScript = arenaFelicidade.GetComponent<GoToArenaFelicidade>();
+        arenafelicidade = arenaFelicidade.GetComponent<GoToArenaFelicidade>();
 
         text.gameObject.SetActive(false);
         textNaoPode.gameObject.SetActive(false);
@@ -35,7 +35,7 @@ public class GoToArenaTristeza : MonoBehaviour
     {
         
         
-            if (arenafeliciaScript.arenaFeita)
+            if (GoToArenaFelicidade.arenaFelicidadeFeita)
             {
                 if (other.CompareTag("Player"))
                 {

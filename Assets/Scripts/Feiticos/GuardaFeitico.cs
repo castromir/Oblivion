@@ -14,9 +14,23 @@ public class GuardaFeitico : MonoBehaviour
         ativo,
         recarga
     }
-    public FeiticoEstado estado = FeiticoEstado.ativo;
+    public FeiticoEstado estado = FeiticoEstado.pronto;  // Inicializa como pronto
 
     public KeyCode atalho;
+
+    private void OnEnable()
+    {
+        // Inicializa o estado dos feitiços
+        foreach (Feiticos feitico in feiticos)
+        {
+            if (feitico == null) continue;
+
+            feitico.Inicializar();
+        }
+
+        // Define o estado inicial do GuardaFeitico
+        estado = FeiticoEstado.pronto;
+    }
 
     void Update()
     {
@@ -57,6 +71,17 @@ public class GuardaFeitico : MonoBehaviour
                     }
                     break;
             }
+        }
+    }
+
+    private void OnDestroy()
+    {
+        // Desinscrever-se de eventos
+        foreach (Feiticos feitico in feiticos)
+        {
+            if (feitico == null) continue;
+
+            feitico.DesinscreverEventos();
         }
     }
 }

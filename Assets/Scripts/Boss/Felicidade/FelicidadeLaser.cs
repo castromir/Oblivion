@@ -21,10 +21,17 @@ public class FelicidadeLaser : MonoBehaviour
     private GameObject currentLaser;
 
     private int numeroDeAvisos = 7;
+    private List<Coroutine> coroutinesAtuais = new List<Coroutine>();
 
     private void Awake()
     {
         player = GameObject.FindWithTag("Player");
+    }
+
+    private void OnEnable()
+    {
+        // Resetar o laser quando o objeto for habilitado
+        ResetarLaser();
     }
 
     private void Update()
@@ -58,7 +65,8 @@ public class FelicidadeLaser : MonoBehaviour
             avisosAtuais.Add(avisoAtual);
         }
 
-        StartCoroutine(AguardarAvisoEContinuar(avisoDelay, angulo, direcao));
+        Coroutine coroutine = StartCoroutine(AguardarAvisoEContinuar(avisoDelay, angulo, direcao));
+        coroutinesAtuais.Add(coroutine);
     }
 
     private IEnumerator AguardarAvisoEContinuar(float delay, float angulo, Vector3 direcao)
@@ -79,11 +87,13 @@ public class FelicidadeLaser : MonoBehaviour
 
         foreach (var aviso in avisosAtuais)
         {
-            StartCoroutine(RemoverAvisoAposTempo(aviso, laserDuracao));
+            Coroutine coroutine = StartCoroutine(RemoverAvisoAposTempo(aviso, laserDuracao));
+            coroutinesAtuais.Add(coroutine);
         }
         avisosAtuais.Clear();
 
-        StartCoroutine(DesativarLaserAposTempo(currentLaser, laserDuracao));
+        Coroutine desativarLaserCoroutine = StartCoroutine(DesativarLaserAposTempo(currentLaser, laserDuracao));
+        coroutinesAtuais.Add(desativarLaserCoroutine);
         laserRecarga = laserTempoRecarga;
     }
 
@@ -110,5 +120,34 @@ public class FelicidadeLaser : MonoBehaviour
     public void ResetarLaser()
     {
         laserRecarga = laserTempoRecarga;
+    }
+
+    private void OnDisable()
+    {
+        // Parar todas as coroutines quando o objeto for desabilitado
+        foreach (var coroutine in coroutinesAtuais)
+        {
+            if (coroutine != null)
+            {
+                StopCoroutine(coroutine);
+            }
+        }
+        coroutinesAtuais.Clear();
+
+        // Destruir todos os avisos atuais
+        foreach (var aviso in avisosAtuais)
+        {
+            if (aviso != null)
+            {
+                Destroy(aviso);
+            }
+        }
+        avisosAtuais.Clear();
+
+        // Destruir o laser atual se ele ainda estiver ativo
+        if (currentLaser != null)
+        {
+            Destroy(currentLaser);
+        }
     }
 }

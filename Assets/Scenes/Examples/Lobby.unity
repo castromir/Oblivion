@@ -169,7 +169,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 5fc8db7d37ad0864f94f16b9734094b2, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 94e8a690d0c49b34fba5ada7c4d0da72, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -288,8 +288,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   vidaAtual: 1
   vidaMaxima: 3
-  slotVidaVazio: {fileID: 21300000, guid: 5fc8db7d37ad0864f94f16b9734094b2, type: 3}
-  slotVidaCheio: {fileID: 21300000, guid: 28bbd66b38277f148a9b2330ce406e27, type: 3}
+  slotVidaVazio: {fileID: 21300000, guid: 94e8a690d0c49b34fba5ada7c4d0da72, type: 3}
+  slotVidaCheio: {fileID: 21300000, guid: 65e6f42df2626fe4b8f98cffaa5016de, type: 3}
   slotsVida:
   - {fileID: 14124363}
   - {fileID: 1929577901}
@@ -305,6 +305,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ce0038be263d74d9b95eb7a5862c9f4e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &164004493 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4520690331217355740, guid: 5e2a82902b6ea4c0b9b652322ffadcff,
+    type: 3}
+  m_PrefabInstance: {fileID: 766874357}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 164004487}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c8ea22aca2ab904ea6e1ac0c1a4a9f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &169086338
@@ -7558,12 +7570,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 59f5f01a65528f04b85f243e1bb1a24d,
         type: 2}
-    - target: {fileID: 3339481644051735614, guid: 5e2a82902b6ea4c0b9b652322ffadcff,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 1e12903cc14152a4cad1e6458444a8a4,
-        type: 3}
     - target: {fileID: 4520690331217355740, guid: 5e2a82902b6ea4c0b9b652322ffadcff,
         type: 3}
       propertyPath: feiticos.Array.size
@@ -7595,6 +7601,12 @@ PrefabInstance:
       propertyPath: estado
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3339481644051735614, guid: 5e2a82902b6ea4c0b9b652322ffadcff,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 1e12903cc14152a4cad1e6458444a8a4,
+        type: 3}
     - target: {fileID: 3339481645408498932, guid: 5e2a82902b6ea4c0b9b652322ffadcff,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7692,18 +7704,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5e2a82902b6ea4c0b9b652322ffadcff, type: 3}
---- !u!114 &766874358 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4520690331217355740, guid: 5e2a82902b6ea4c0b9b652322ffadcff,
-    type: 3}
-  m_PrefabInstance: {fileID: 766874357}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 164004487}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c8ea22aca2ab904ea6e1ac0c1a4a9f6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &883857656
 GameObject:
   m_ObjectHideFlags: 0
@@ -13435,11 +13435,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 5396923559918712879, guid: ffb52c0023779ec4ebf6e0151c45bbbc,
-        type: 3}
-      propertyPath: m_Color.a
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5396923560189801500, guid: ffb52c0023779ec4ebf6e0151c45bbbc,
         type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -13469,6 +13464,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: VoltarMenuOpcoes
+      objectReference: {fileID: 0}
+    - target: {fileID: 5396923559918712879, guid: ffb52c0023779ec4ebf6e0151c45bbbc,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ffb52c0023779ec4ebf6e0151c45bbbc, type: 3}
@@ -18921,7 +18921,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   iconeImagem: {fileID: 1513782761}
   tempoRecargaTexto: {fileID: 1419533484}
-  guardaFeitico: {fileID: 766874358}
+  guardaFeitico: {fileID: 164004493}
   playerMago: {fileID: 164004487}
 --- !u!222 &1513782763
 CanvasRenderer:
@@ -20705,7 +20705,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 5fc8db7d37ad0864f94f16b9734094b2, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 94e8a690d0c49b34fba5ada7c4d0da72, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -20754,7 +20754,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: {fileID: 883857657}
   tutorial: {fileID: 279527212}
-  arenaFeita: 0
 --- !u!61 &2029713699
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -20956,7 +20955,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 5fc8db7d37ad0864f94f16b9734094b2, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 94e8a690d0c49b34fba5ada7c4d0da72, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

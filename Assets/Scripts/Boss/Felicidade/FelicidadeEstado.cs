@@ -1,5 +1,7 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class FelicidadeEstado : MonoBehaviour
 {
@@ -26,6 +28,7 @@ public class FelicidadeEstado : MonoBehaviour
     private readonly float laserDelay = laserDelayTempo;
 
     private Vector3 direcao;
+    private List<Coroutine> coroutinesAtuais = new List<Coroutine>();
 
     enum BossEstado
     {
@@ -47,6 +50,12 @@ public class FelicidadeEstado : MonoBehaviour
         laser.SetPlayerTransform(player.transform);
     }
 
+    private void OnEnable()
+    {
+        // Resetar o estado quando o objeto for habilitado
+        ResetarEstado();
+    }
+
     void Start()
     {
         bossSR = GetComponent<SpriteRenderer>();
@@ -62,22 +71,26 @@ public class FelicidadeEstado : MonoBehaviour
 
     private void Update()
     {
+        if (bossVida.isDead)
+        {
+            GoToArenaFelicidade.arenaFelicidadeFeita = true; // Define a bool
+            SceneManager.LoadScene("Lobby");
+            return;
+        }
         if (bossVida.vidaAtual <= bossVida.GetVidaMaxima() / 4)
         {
             velocidade = 6f;
-            laserDelayTempo = 0.25f;
+            //laserDelayTempo = 0.25f;
             investidaDelayTempo = 0.5f;
             prepararInvestidaDelayTempo = 0.3f;
         }
         else if (bossVida.vidaAtual <= bossVida.GetVidaMaxima() / 1.5)
         {
             velocidade = 4.5f;
-            laserDelayTempo = 0.8f;
+           // laserDelayTempo = 0.8f;
             investidaDelayTempo = 1f;
             prepararInvestidaDelayTempo = 0.5f;
         }
-
-        if (bossVida.isDead) return; // Verifica se o boss está morto
 
         switch (estado)
         {
@@ -96,14 +109,16 @@ public class FelicidadeEstado : MonoBehaviour
                 else if (laser.ConsegueLaser()) // investida em recarga, laser pronto
                 {
                     // Ativar o estado de disparo do laser
-                    StartCoroutine(EstadoLaser());
+                    Coroutine coroutine = StartCoroutine(EstadoLaser());
+                    coroutinesAtuais.Add(coroutine);
                 }
                 else
                 {
                     if (ConsegueInvestida(posicaoPlayer, player)) // só investida
                     {
                         estado = BossEstado.PreparandoInvestida;
-                        StartCoroutine(AvisoInvestida());
+                        Coroutine coroutine = StartCoroutine(AvisoInvestida());
+                        coroutinesAtuais.Add(coroutine);
                     }
                     else
                     {
@@ -171,7 +186,6 @@ public class FelicidadeEstado : MonoBehaviour
             numeroDeDisparos = 2;
         }
 
-
         for (int i = 0; i < numeroDeDisparos; i++)
         {
             yield return new WaitForSeconds(laserDelay);
@@ -211,6 +225,27 @@ public class FelicidadeEstado : MonoBehaviour
         yield return new WaitForSeconds(avisoDuracao);
         bossSR.color = corOriginal;
 
+        prepararInvestidaDelay = prepararInvestidaDelayTempo;
+    }
+
+    private void OnDisable()
+    {
+        // Parar todas as coroutines quando o objeto for desabilitado
+        foreach (var coroutine in coroutinesAtuais)
+        {
+            if (coroutine != null)
+            {
+                StopCoroutine(coroutine);
+            }
+        }
+        coroutinesAtuais.Clear();
+    }
+
+    private void ResetarEstado()
+    {
+        // Reiniciar todas as variáveis e estado
+        estado = BossEstado.Padrao;
+        investidaDelay = investidaDelayTempo;
         prepararInvestidaDelay = prepararInvestidaDelayTempo;
     }
 }
