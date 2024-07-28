@@ -74,6 +74,7 @@ public class FelicidadeEstado : MonoBehaviour
         if (bossVida.isDead)
         {
             GoToArenaFelicidade.arenaFelicidadeFeita = true; // Define a bool
+            PlayerPrefs.SetInt("felicidade", 1); //define a bool de um jeito melhor, Obs: definir na função novo jogo do menu inicial um valor diferente de um para esta variavel
             SceneManager.LoadScene("Lobby");
             return;
         }

@@ -29,17 +29,18 @@ public class GoToArenaFelicidade : MonoBehaviour
         
            if (other.CompareTag("Player"))
             {
-               if (tutorialScript.tutorialComplete)
-               {
+                if (tutorialScript.tutorialComplete)
+                {
                     text.gameObject.SetActive(true);
-               }
 
-               if (Input.GetKeyDown(KeyCode.E))
-               {
-                    text.gameObject.SetActive(false);
-                    SceneManager.LoadScene(2); //0 Menu, 1 Lobby, 2 Arena Felicidade, 3 Arena Tristeza, 4 Arena raiva  
-                    
-               }
+
+                    if (Input.GetKeyDown(KeyCode.E))
+                    {
+                        text.gameObject.SetActive(false);
+                        SceneManager.LoadScene(3); //0 Menu,1 Hitoria, 2 Lobby, 3 Arena Felicidade, 4 Arena Tristeza, 5 Arena raiva  
+
+                }
+                }
 
             }
         

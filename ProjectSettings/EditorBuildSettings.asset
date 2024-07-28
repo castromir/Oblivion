@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Examples/Menu.unity
     guid: 98e1555dc6520094fbbc62d95af166ae
   - enabled: 1
+    path: Assets/Scenes/Examples/Historia.unity
+    guid: e5e2c7e1a128dd8489c0775b84f0a30f
+  - enabled: 1
     path: Assets/Scenes/Examples/Lobby.unity
     guid: 3ed24fbcb62526240bd81b715b5f70b0
   - enabled: 1
