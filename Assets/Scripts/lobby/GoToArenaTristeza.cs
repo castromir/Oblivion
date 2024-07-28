@@ -39,7 +39,7 @@ public class GoToArenaTristeza : MonoBehaviour
             {
                 if (other.CompareTag("Player"))
                 {
-                    if (tutorialScript.tutorialComplete)
+                    if (PlayerPrefs.GetInt("felicidade", 0) == 1)
                     {
                         text.gameObject.SetActive(true);
                     }

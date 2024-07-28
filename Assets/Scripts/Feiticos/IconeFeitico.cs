@@ -1,6 +1,6 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 
 public class IconeFeitico : MonoBehaviour
 {
@@ -15,7 +15,15 @@ public class IconeFeitico : MonoBehaviour
     {
         if (guardaFeitico == null)
         {
-            //Debug.LogError("GuardaFeitico não foi atribuído.");
+            // Debug.LogError("GuardaFeitico não foi atribuído.");
+            return;
+        }
+
+        // Verifique se a Felicidade foi derrotada
+        if (indexFeitico == 1 && PlayerPrefs.GetInt("felicidade", 0) == 0)
+        {
+            iconeImagem.gameObject.SetActive(false);
+            tempoRecargaTexto.gameObject.SetActive(false);
             return;
         }
 

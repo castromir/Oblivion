@@ -182,7 +182,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Se eu recuperar minha mem\xF3ria vou me lembrar deles!"
+  m_Text: "Sinto que preciso enfrentar minhas mem\xF3rias..."
 --- !u!222 &249027873
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -775,7 +775,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Onde est\xE3o meus poderes???"
+  m_Text: "Esqueci meus feiti\xE7os..."
 --- !u!222 &889087102
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -854,7 +854,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Ei, voc\xEA pode me ajudar a recuperar minha mem\xF3ria?"
+  m_Text: "Derrotarei as minhas lembran\xE7as de Felicidade primeiro."
 --- !u!222 &981450021
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1012,7 +1012,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Consigo lembrar s\xF3 de alguns!"
+  m_Text: Consigo lembrar de apenas alguns...
 --- !u!222 &1577682785
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1232,7 +1232,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "N\xE3o consigo me lembrar de nada do que aconteceu"
+  m_Text: "N\xE3o consigo lembrar de nada do que aconteceu..."
 --- !u!222 &2057597915
 CanvasRenderer:
   m_ObjectHideFlags: 0

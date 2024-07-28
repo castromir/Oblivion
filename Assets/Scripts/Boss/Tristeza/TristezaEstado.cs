@@ -51,15 +51,15 @@ public class TristezaEstado : MonoBehaviour
                     estado = BossEstado.MuitoMachucado;
                 }
 
-                bossTristeza.SetIntervaloContaminacao(1f);
-                bossTristeza.SetTempoContaminacao(2f);
+                bossTristeza.SetIntervaloContaminacao(0.8f);
+                bossTristeza.SetTempoContaminacao(1.7f);
 
                 break;
 
             case BossEstado.MuitoMachucado: // 1/4 pra baixo
 
-                bossTristeza.SetIntervaloContaminacao(0.7f);
-                bossTristeza.SetTempoContaminacao(1.5f);
+                bossTristeza.SetIntervaloContaminacao(0.5f);
+                bossTristeza.SetTempoContaminacao(1.2f);
 
                 break;
         }

@@ -1,9 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
 public class GuardaFeitico : MonoBehaviour
 {
     public FeiticoEstadoInfo[] feiticos;  // Array de estados de feitiços
+    public string nomeFeiticoEspecial = "Euforia"; // Nome do feitiço especial que requer condição
 
     public enum FeiticoEstado
     {
@@ -18,6 +20,16 @@ public class GuardaFeitico : MonoBehaviour
         for (int i = 0; i < feiticos.Length; i++)
         {
             if (feiticos[i].feitico == null) continue;
+
+            // Verificar se o feitiço especial deve estar disponível
+            if (feiticos[i].feitico.nome == nomeFeiticoEspecial)
+            {
+                if (PlayerPrefs.GetInt("felicidade", 0) != 1)
+                {
+                    feiticos[i].feitico = null; // Desabilitar o feitiço especial se a condição não for atendida
+                    continue;
+                }
+            }
 
             feiticos[i].feitico.Inicializar();
             feiticos[i].estado = FeiticoEstado.pronto;  // Inicializa o estado como pronto
