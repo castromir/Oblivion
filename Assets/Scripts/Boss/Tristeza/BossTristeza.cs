@@ -14,6 +14,7 @@ public class BossTristeza : Boss
     private float auraAtaqueScale = 6f;
 
     public GameObject avisoPrefab;
+    public GameObject avisoPrefabVermelho; // Novo prefab para o aviso vermelho
     private List<Vector3> quadradosPosicoes = new List<Vector3>();
     private List<Vector3> avisoPosicoes = new List<Vector3>();
 
@@ -128,13 +129,13 @@ public class BossTristeza : Boss
             Vector3 avisoPos3 = avisoPosicoes[indices[2]];
 
             // Instanciar avisos nos quadrados selecionados
-            GameObject aviso1 = Instantiate(avisoPrefab, avisoPos1, Quaternion.identity);
-            GameObject aviso2 = Instantiate(avisoPrefab, avisoPos2, Quaternion.identity);
-            GameObject aviso3 = Instantiate(avisoPrefab, avisoPos3, Quaternion.identity);
+            GameObject aviso1 = Instantiate(avisoPrefabVermelho, avisoPos1, Quaternion.identity); // Usando avisoPrefabVermelho para os avisos
+            GameObject aviso2 = Instantiate(avisoPrefabVermelho, avisoPos2, Quaternion.identity);
+            GameObject aviso3 = Instantiate(avisoPrefabVermelho, avisoPos3, Quaternion.identity);
 
-            aviso1.transform.localScale = new Vector3(5f, 5f, 5f);
-            aviso2.transform.localScale = new Vector3(5f, 5f, 5f);
-            aviso3.transform.localScale = new Vector3(5f, 5f, 5f);
+            aviso1.transform.localScale = new Vector3(8f, 8f, 8f);
+            aviso2.transform.localScale = new Vector3(8f, 8f, 8f);
+            aviso3.transform.localScale = new Vector3(8f, 8f, 8f);
 
             // Esperar um tempo antes de instanciar as auras
             yield return new WaitForSeconds(2f); // Ajuste o tempo do aviso conforme necessário

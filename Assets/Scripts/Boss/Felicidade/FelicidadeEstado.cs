@@ -17,7 +17,7 @@ public class FelicidadeEstado : MonoBehaviour
 
     private float velocidade = 3f;
     private float investidaVelocidade = 8f;
-    private float investidaTempo = 2f; // Duração da investida
+    private float investidaTempo = 1.5f; // Duração da investida
     static private float investidaDelayTempo = 1.5f; // Inicialização do delay
     private float investidaDelay = investidaDelayTempo; // Temporizador da investida
     static private float prepararInvestidaDelayTempo = 1f; // Delay antes da investida
@@ -77,12 +77,12 @@ public class FelicidadeEstado : MonoBehaviour
             SceneManager.LoadScene("Lobby");
             return;
         }
-        if (bossVida.vidaAtual <= bossVida.GetVidaMaxima() / 4)
+        if (bossVida.vidaAtual <= bossVida.GetVidaMaxima() / 3.5)
         {
-            velocidade = 6f;
+            velocidade = 6.5f;
             //laserDelayTempo = 0.25f;
-            investidaDelayTempo = 0.5f;
-            prepararInvestidaDelayTempo = 0.3f;
+            investidaDelayTempo = 0.35f;
+            prepararInvestidaDelayTempo = 0.2f;
         }
         else if (bossVida.vidaAtual <= bossVida.GetVidaMaxima() / 1.5)
         {
@@ -132,7 +132,15 @@ public class FelicidadeEstado : MonoBehaviour
                 prepararInvestidaDelay -= Time.deltaTime;
                 if (prepararInvestidaDelay <= 0)
                 {
-                    investidaVelocidade = 10f; // Velocidade inicial da investida
+                    if (bossVida.vidaAtual <= bossVida.GetVidaMaxima() / 3.5)
+                        investidaVelocidade = 13.5f;
+
+                    else if (bossVida.vidaAtual <= bossVida.GetVidaMaxima() / 1.5)
+                        investidaVelocidade = 12f;
+
+                    else
+                        investidaVelocidade = 10f; // Velocidade inicial da investida
+
                     investidaTimer = investidaTempo; // Reinicia o temporizador da investida
                     estado = BossEstado.Investida;
                 }
