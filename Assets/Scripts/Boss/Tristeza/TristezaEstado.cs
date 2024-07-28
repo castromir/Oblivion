@@ -4,39 +4,63 @@ using UnityEngine;
 
 public class TristezaEstado : MonoBehaviour
 {
-    public TristezaAtaqueArea ataqueArea;
-
-    public float ataqueAreaRecarga = TristezaAtaqueArea.ataqueAreaTempoRecarga;
+    BossTristeza bossTristeza;
+    BossVida bossVida;
     enum BossEstado
     {
         Padrao,
-        AtaqueArea
+        Machucado,
+        MuitoMachucado
     }
 
     BossEstado estado;
     void Start()
     {
+        bossTristeza = GetComponent<BossTristeza>();
+        bossVida = GetComponent<BossVida>();
         estado = BossEstado.Padrao;
     }
 
     void Update()
     {
-        
-
-        switch (estado) 
+        if (bossVida.isDead)
         {
-            case BossEstado.Padrao:
+            StopAllCoroutines();
+            return;
+        }
 
-                ataqueAreaRecarga -= Time.deltaTime;
+        switch (estado)
+        {
+            case BossEstado.Padrao: //Acima de metade da vida
 
-                if (ataqueAreaRecarga <= 0)
+                if (bossVida.vidaAtual <= bossVida.GetVidaMaxima() / 2 && bossVida.vidaAtual > bossVida.GetVidaMaxima() / 4)
                 {
-                    estado = BossEstado.AtaqueArea;
+                    estado = BossEstado.Machucado;
+                }
+                else if (bossVida.vidaAtual <= bossVida.GetVidaMaxima() / 4)
+                {
+                    estado = BossEstado.MuitoMachucado;
                 }
 
                 break;
 
-            case BossEstado.AtaqueArea:
+            case BossEstado.Machucado: //Metade da vida até 1/4
+
+                if (bossVida.vidaAtual <= bossVida.GetVidaMaxima() / 4)
+                {
+                    estado = BossEstado.MuitoMachucado;
+                }
+
+                bossTristeza.SetIntervaloContaminacao(1f);
+                bossTristeza.SetTempoContaminacao(2f);
+
+                break;
+
+            case BossEstado.MuitoMachucado: // 1/4 pra baixo
+
+                bossTristeza.SetIntervaloContaminacao(0.7f);
+                bossTristeza.SetTempoContaminacao(1.5f);
+
                 break;
         }
     }

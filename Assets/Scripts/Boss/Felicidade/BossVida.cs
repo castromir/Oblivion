@@ -24,7 +24,7 @@ public class BossVida : MonoBehaviour
     {
         vidaAtual -= quantidadeDano;
 
-        if (vidaAtual <= 0)
+        if (vidaAtual <= 0 && !isDead)
         {
             isDead = true;
             bossSR.enabled = false;

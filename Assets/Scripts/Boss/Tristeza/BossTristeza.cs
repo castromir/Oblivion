@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class BossTristeza : Boss
 {
+    private bool morto = false;
+
     private GameObject auraInstancia;
     public GameObject auraPrefab;
     public Transform auraPosicao;
@@ -15,12 +17,18 @@ public class BossTristeza : Boss
     private List<Vector3> quadradosPosicoes = new List<Vector3>();
     private List<Vector3> avisoPosicoes = new List<Vector3>();
 
-    public float intervaloContaminacao = 5f; // Intervalo entre as mudanças de contaminação
-    public float tempoContaminacao = 5f; // Tempo que a contaminação permanece
+    private float intervaloContaminacao = 1.5f; // Intervalo entre as mudanças de contaminação
+    private float tempoContaminacao = 2.5f; // Tempo que a contaminação permanece
     private Coroutine contaminacaoCoroutine;
+
+    private BossVida bossVida;
+
+    private HashSet<int> quadradosContaminadosTurnoAnterior = new HashSet<int>();
 
     void Start()
     {
+        bossVida = GetComponent<BossVida>();
+
         // Definir posições dos quadrados (losangos) para auras
         quadradosPosicoes.Add(new Vector3(-8.5f, 0.5f, 0f)); // Ajuste de acordo com a posição real dos quadrados na sua arena
         quadradosPosicoes.Add(new Vector3(-0.25f, 4.5f, 0f));
@@ -46,6 +54,26 @@ public class BossTristeza : Boss
 
     void Update()
     {
+        if (bossVida.vidaAtual <= 0)
+        {
+            Debug.Log("Boss está morto");
+
+            if (contaminacaoCoroutine != null)
+            {
+                StopCoroutine(contaminacaoCoroutine);
+                contaminacaoCoroutine = null;
+            }
+
+            // Destruir a aura permanente ao redor do BossTristeza
+            if (auraInstancia != null)
+            {
+                Destroy(auraInstancia);
+                auraInstancia = null;
+            }
+
+            return;
+        }
+
         // Qualquer outra lógica específica do BossTristeza
     }
 
@@ -53,8 +81,38 @@ public class BossTristeza : Boss
     {
         while (true)
         {
-            // Escolher três quadrados aleatórios
+            if (bossVida.isDead)
+            {
+                morto = true;
+                StopCoroutine(contaminacaoCoroutine);
+                contaminacaoCoroutine = null;
+                Destroy(auraInstancia);
+                auraInstancia = null;
+                yield break;
+            }
+
+            // Escolher três quadrados aleatórios que não foram contaminados no turno anterior
             List<int> indices = new List<int>();
+            List<int> possiveisIndices = new List<int>();
+            for (int i = 0; i < quadradosPosicoes.Count; i++)
+            {
+                if (!quadradosContaminadosTurnoAnterior.Contains(i))
+                {
+                    possiveisIndices.Add(i);
+                }
+            }
+
+            while (indices.Count < 3 && possiveisIndices.Count > 0)
+            {
+                int newIndex = possiveisIndices[Random.Range(0, possiveisIndices.Count)];
+                if (!indices.Contains(newIndex))
+                {
+                    indices.Add(newIndex);
+                    possiveisIndices.Remove(newIndex);
+                }
+            }
+
+            // Se não for possível selecionar 3 quadrados novos, completamos com os que foram usados no turno anterior
             while (indices.Count < 3)
             {
                 int newIndex = Random.Range(0, quadradosPosicoes.Count);
@@ -103,9 +161,23 @@ public class BossTristeza : Boss
             Destroy(aura2);
             Destroy(aura3);
 
+            // Atualizar o conjunto de quadrados contaminados no turno anterior
+            quadradosContaminadosTurnoAnterior.Clear();
+            quadradosContaminadosTurnoAnterior.UnionWith(indices);
+
             // Esperar um tempo antes de contaminar novos quadrados
             yield return new WaitForSeconds(intervaloContaminacao);
         }
+    }
+
+    public void SetIntervaloContaminacao(float intervaloContaminacao)
+    {
+        this.intervaloContaminacao = intervaloContaminacao;
+    }
+
+    public void SetTempoContaminacao(float tempoContaminacao)
+    {
+        this.tempoContaminacao = tempoContaminacao;
     }
 
     public override string[] GetDirecoesEstaticas()

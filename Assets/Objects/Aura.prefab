@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8382808871051664369}
   - component: {fileID: 3019638599479904155}
   - component: {fileID: 4302453276953089240}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Aura
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -205,6 +205,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Caveira
       objectReference: {fileID: 0}
+    - target: {fileID: 987461887021870348, guid: 1ddfee43161ed2744a472fc680bc1d93,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 7908252144964170049, guid: 1ddfee43161ed2744a472fc680bc1d93,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -289,6 +294,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Caveira (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 987461887021870348, guid: 1ddfee43161ed2744a472fc680bc1d93,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 7908252144964170049, guid: 1ddfee43161ed2744a472fc680bc1d93,
         type: 3}
@@ -385,6 +395,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Caveira (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 987461887021870348, guid: 1ddfee43161ed2744a472fc680bc1d93,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 7908252144964170049, guid: 1ddfee43161ed2744a472fc680bc1d93,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -469,6 +484,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Caveira (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 987461887021870348, guid: 1ddfee43161ed2744a472fc680bc1d93,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 7908252144964170049, guid: 1ddfee43161ed2744a472fc680bc1d93,
         type: 3}
