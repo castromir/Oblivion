@@ -22,6 +22,7 @@ public class BossTristeza : Boss
     private float tempoContaminacao = 1.6f; // Tempo que a contaminação permanece
     private Coroutine contaminacaoCoroutine;
 
+    private AtaqueCaveiras ataqueCaveiras;
     private BossVida bossVida;
 
     private HashSet<int> quadradosContaminadosTurnoAnterior = new HashSet<int>();
@@ -51,6 +52,9 @@ public class BossTristeza : Boss
 
         // Inicia a contaminação dos quadrados
         contaminacaoCoroutine = StartCoroutine(ContaminarQuadrados());
+
+        ataqueCaveiras = GetComponent<AtaqueCaveiras>();
+        ataqueCaveiras.IniciarAtaque();
     }
 
     void Update()
@@ -89,6 +93,7 @@ public class BossTristeza : Boss
                 contaminacaoCoroutine = null;
                 Destroy(auraInstancia);
                 auraInstancia = null;
+                ataqueCaveiras.PararAtaque();
                 yield break;
             }
 
