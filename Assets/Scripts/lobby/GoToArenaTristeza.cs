@@ -14,6 +14,8 @@ public class GoToArenaTristeza : MonoBehaviour
     public GameObject arenaFelicidade;
     private GoToArenaFelicidade arenafelicidade;
 
+    private bool podeIrPraArena = false;
+
 
     void Start()
     {
@@ -28,41 +30,43 @@ public class GoToArenaTristeza : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (podeIrPraArena)
+        {
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                text.gameObject.SetActive(false);
+                SceneManager.LoadSceneAsync(4); //0 Menu,1 Hitoria, 2 Lobby, 3 Arena Felicidade, 4 Arena Tristeza, 5 Arena raiva
+            }
+        }
     }
 
-    private void OnTriggerStay2D(Collider2D other)
-    {
-        
-        
-            if (GoToArenaFelicidade.arenaFelicidadeFeita)
+    private void OnTriggerEnter2D(Collider2D other) {
+        if (GoToArenaFelicidade.arenaFelicidadeFeita)
+        {
+            if (other.CompareTag("Player"))
             {
-                if (other.CompareTag("Player"))
+                if (PlayerPrefs.GetInt("felicidade", 0) == 1)
                 {
-                    if (PlayerPrefs.GetInt("felicidade", 0) == 1)
-                    {
-                        text.gameObject.SetActive(true);
-                    }
-                    if (Input.GetKeyDown(KeyCode.E))
-                    {
-                        text.gameObject.SetActive(false);
-                        SceneManager.LoadSceneAsync(4); //0 Menu,1 Hitoria, 2 Lobby, 3 Arena Felicidade, 4 Arena Tristeza, 5 Arena raiva
-                }
+                    text.gameObject.SetActive(true);
+                    podeIrPraArena = true;
+
                 }
             }
-            else
+
+        }
+        else
+        {
+            if (other.CompareTag("Player"))
             {
-                if (other.CompareTag("Player"))
+                if (tutorialScript.tutorialComplete)
                 {
-                    if (tutorialScript.tutorialComplete)
-                    {
                     textNaoPode.gameObject.SetActive(true);
-                    }
+                    podeIrPraArena = false;
                 }
             }
-        
-    }
+        }
 
+    }
 
     private void OnTriggerExit2D(Collider2D other)
     {
@@ -70,6 +74,7 @@ public class GoToArenaTristeza : MonoBehaviour
         {
             text.gameObject.SetActive(false);
             textNaoPode.gameObject.SetActive(false);
+            podeIrPraArena = false;
         }
     }
 }
