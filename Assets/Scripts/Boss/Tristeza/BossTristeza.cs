@@ -18,18 +18,29 @@ public class BossTristeza : Boss
     private List<Vector3> quadradosPosicoes = new List<Vector3>();
     private List<Vector3> avisoPosicoes = new List<Vector3>();
 
+    public GameObject caveiraPrefab; // Prefab da caveira
+    public Transform[] caveiraSpawnPoints; // Pontos de spawn das caveiras
+
     private float intervaloContaminacao = 0.7f; // Intervalo entre as mudanças de contaminação
     private float tempoContaminacao = 1.6f; // Tempo que a contaminação permanece
     private Coroutine contaminacaoCoroutine;
 
-    private AtaqueCaveiras ataqueCaveiras;
     private BossVida bossVida;
+    private Transform playerTransform; // Referência ao Transform do player
 
     private HashSet<int> quadradosContaminadosTurnoAnterior = new HashSet<int>();
+
 
     void Start()
     {
         bossVida = GetComponent<BossVida>();
+
+        // Buscar o player na cena
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player != null)
+        {
+            playerTransform = player.transform;
+        }
 
         // Definir posições dos quadrados (losangos) para auras
         quadradosPosicoes.Add(new Vector3(-8.5f, 0.5f, 0f)); // Ajuste de acordo com a posição real dos quadrados na sua arena
@@ -53,8 +64,8 @@ public class BossTristeza : Boss
         // Inicia a contaminação dos quadrados
         contaminacaoCoroutine = StartCoroutine(ContaminarQuadrados());
 
-        ataqueCaveiras = GetComponent<AtaqueCaveiras>();
-        ataqueCaveiras.IniciarAtaque();
+        // Inicia o ataque das caveiras
+        GetComponent<AtaqueCaveiras>().StartCoroutine("LancarCaveiras");
     }
 
     void Update()
@@ -79,6 +90,13 @@ public class BossTristeza : Boss
             return;
         }
 
+        // Atualizar a direção do Boss para olhar para o player
+        if (playerTransform != null)
+        {
+            Vector2 directionToPlayer = playerTransform.position - transform.position;
+            GetComponent<BossRenderer>().SetDirection(directionToPlayer, false);
+        }
+
         // Qualquer outra lógica específica do BossTristeza
     }
 
@@ -93,7 +111,6 @@ public class BossTristeza : Boss
                 contaminacaoCoroutine = null;
                 Destroy(auraInstancia);
                 auraInstancia = null;
-                ataqueCaveiras.PararAtaque();
                 yield break;
             }
 
@@ -186,13 +203,23 @@ public class BossTristeza : Boss
         this.tempoContaminacao = tempoContaminacao;
     }
 
+    public List<Vector3> GetQuadradosPosicoes()
+    {
+        return quadradosPosicoes;
+    }
+
+    public HashSet<int> GetQuadradosContaminadosTurnoAnterior()
+    {
+        return quadradosContaminadosTurnoAnterior;
+    }
+
     public override string[] GetDirecoesEstaticas()
     {
-        return new string[] { "Felicidade Andar N", "Felicidade Andar O", "Felicidade Andar S", "Felicidade Andar L" };
+        return new string[] { "Tristeza N", "Tristeza O", "Tristeza S", "Tristeza L" };
     }
 
     public override string[] GetDirecoesHabilidade()
     {
-        return new string[] { "Felicidade Investida N", "Felicidade Investida O", "Felicidade Investida S", "Felicidade Investida L" };
+        return new string[] { "Tristeza N", "Tristeza O", "Tristeza S", "Tristeza L" };
     }
 }

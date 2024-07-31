@@ -724,6 +724,7 @@ GameObject:
   - component: {fileID: 239016532}
   - component: {fileID: 239016533}
   - component: {fileID: 239016537}
+  - component: {fileID: 239016538}
   m_Layer: 0
   m_Name: BossTristeza
   m_TagString: Alvo
@@ -762,7 +763,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8c50df051425b740bfe7419529601ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vidaMaxima: 2600
+  vidaMaxima: 300
   vidaAtual: 0
   isDead: 0
   bossSR: {fileID: 239016534}
@@ -890,6 +891,8 @@ MonoBehaviour:
     type: 3}
   avisoPrefabVermelho: {fileID: 5439488708257826868, guid: 60d1253fb9717af4da6b84d847d6cadb,
     type: 3}
+  caveiraPrefab: {fileID: 0}
+  caveiraSpawnPoints: []
 --- !u!82 &239016532
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1070,6 +1073,7 @@ Transform:
   m_LocalScale: {x: 4, y: 4, z: 4}
   m_Children:
   - {fileID: 1117087473}
+  - {fileID: 1244283162}
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1086,6 +1090,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   intervaloDano: 1
+--- !u!114 &239016538
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 239016523}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d505ea173dae584d9e3c1fc0145d61a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  caveiraPrefab: {fileID: 6875734874575928673, guid: 719bb3279d53ca04f80cc142f589c1e5,
+    type: 3}
+  spawnPoint: {fileID: 1244283162}
+  duracaoCaveira: 5
 --- !u!1 &270173202
 GameObject:
   m_ObjectHideFlags: 0
@@ -8576,7 +8596,7 @@ PrefabInstance:
     - target: {fileID: 1246958761141379441, guid: c2c536102c0425942a4b5b6ac5fba723,
         type: 3}
       propertyPath: m_Color.a
-      value: 0.7254902
+      value: 0.89411765
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c2c536102c0425942a4b5b6ac5fba723, type: 3}
@@ -9166,6 +9186,36 @@ MonoBehaviour:
   m_Script: {fileID: -113659843, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1244283161
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1244283162}
+  m_Layer: 0
+  m_Name: Caveira
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1244283162
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1244283161}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 239016536}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1299143968
 GameObject:
   m_ObjectHideFlags: 0

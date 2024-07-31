@@ -15,7 +15,6 @@ public class BossRenderer : MonoBehaviour
         boss = GetComponent<Boss>();
     }
 
-
     public void SetDirection(Vector2 direction, bool investida)
     {
         string[] directionArray;
@@ -43,4 +42,3 @@ public class BossRenderer : MonoBehaviour
         return Mathf.FloorToInt(stepCount);
     }
 }
-

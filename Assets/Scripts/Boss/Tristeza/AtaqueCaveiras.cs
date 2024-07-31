@@ -5,63 +5,68 @@ using UnityEngine;
 public class AtaqueCaveiras : MonoBehaviour
 {
     public GameObject caveiraPrefab; // Prefab da caveira
-    public Transform[] linhasSpawn; // Posições de spawn das linhas de caveiras
+    public Transform spawnPoint; // Ponto de spawn da caveira
+    private float caveiraSpeed = 3.5f; // Velocidade das caveiras
+    public float duracaoCaveira = 5f; // Duração antes de destruir a caveira
+    private int caveirasPorOnda = 1; // Quantidade de caveiras por onda
 
-    private float intervaloCaveira = 0.5f; // Intervalo entre caveiras na linha
-    private float velocidadeCaveira = 5f; // Velocidade das caveiras
+    private Transform playerTransform; // Transform do player
 
-    private Coroutine ataqueCaveirasCoroutine;
-
-    public void IniciarAtaque()
+    private void Start()
     {
-        if (ataqueCaveirasCoroutine == null)
+        // Buscar o player na cena
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player != null)
         {
-            ataqueCaveirasCoroutine = StartCoroutine(LancarCaveiras());
+            playerTransform = player.transform;
         }
-    }
 
-    public void PararAtaque()
-    {
-        if (ataqueCaveirasCoroutine != null)
-        {
-            StopCoroutine(ataqueCaveirasCoroutine);
-            ataqueCaveirasCoroutine = null;
-        }
+        // Começar o ataque das caveiras
+        StartCoroutine(LancarCaveiras());
     }
 
     private IEnumerator LancarCaveiras()
     {
         while (true)
         {
-            foreach (Transform linha in linhasSpawn)
+            if (playerTransform != null)
             {
-                StartCoroutine(LancarLinhaCaveiras(linha));
+                for (int i = 0; i < caveirasPorOnda; i++)
+                {
+                    // Instanciar a caveira
+                    GameObject caveira = Instantiate(caveiraPrefab, spawnPoint.position, Quaternion.identity);
+
+                    // Adicionar comportamento de flutuar à caveira
+                    Rigidbody2D rb = caveira.GetComponent<Rigidbody2D>();
+                    if (rb != null)
+                    {
+                        rb.isKinematic = true;
+
+                        // Calcular a direção do spawn point até o player
+                        Vector2 direction = (playerTransform.position - spawnPoint.position).normalized;
+                        rb.velocity = direction * caveiraSpeed;
+                    }
+
+                    // Destruir a caveira após a duração especificada
+                    Destroy(caveira, duracaoCaveira);
+
+                    // Pequeno intervalo entre cada caveira lançada
+                    yield return new WaitForSeconds(0.9f); 
+                }
             }
 
-            // Tempo de espera entre cada série de caveiras
-            yield return new WaitForSeconds(5f);
+            // Esperar um tempo antes de lançar a próxima onda de caveiras
+            yield return new WaitForSeconds(4f); 
         }
     }
 
-    private IEnumerator LancarLinhaCaveiras(Transform linha)
+    public void SetCaveiraSpeed(float speed)
     {
-        for (int i = 0; i < 5; i++) // Ajuste o número de caveiras conforme necessário
-        {
-            GameObject caveira = Instantiate(caveiraPrefab, linha.position, Quaternion.identity);
-            Rigidbody2D rb = caveira.GetComponent<Rigidbody2D>();
-            rb.velocity = Vector2.left * velocidadeCaveira; // Ajuste a direção e velocidade conforme necessário
-
-            yield return new WaitForSeconds(intervaloCaveira);
-        }
+        caveiraSpeed = speed;
     }
 
-    public void SetIntervaloCaveira(float intervalo)
+    public void SetCaveirasPorOnda(int quantidade)
     {
-        this.intervaloCaveira = intervalo;
-    }
-
-    public void SetVelocidadeCaveira(float velocidade)
-    {
-        this.velocidadeCaveira = velocidade;
+        caveirasPorOnda = quantidade;
     }
 }

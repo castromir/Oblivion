@@ -7,6 +7,8 @@ public class TristezaEstado : MonoBehaviour
 {
     BossTristeza bossTristeza;
     BossVida bossVida;
+    AtaqueCaveiras ataqueCaveiras;
+
     enum BossEstado
     {
         Padrao,
@@ -15,10 +17,12 @@ public class TristezaEstado : MonoBehaviour
     }
 
     BossEstado estado;
+
     void Start()
     {
         bossTristeza = GetComponent<BossTristeza>();
         bossVida = GetComponent<BossVida>();
+        ataqueCaveiras = GetComponent<AtaqueCaveiras>();
         estado = BossEstado.Padrao;
     }
 
@@ -34,8 +38,7 @@ public class TristezaEstado : MonoBehaviour
 
         switch (estado)
         {
-            case BossEstado.Padrao: //Acima de metade da vida
-
+            case BossEstado.Padrao: // Acima de metade da vida
                 if (bossVida.vidaAtual <= bossVida.GetVidaMaxima() / 2 && bossVida.vidaAtual > bossVida.GetVidaMaxima() / 4)
                 {
                     estado = BossEstado.Machucado;
@@ -44,10 +47,12 @@ public class TristezaEstado : MonoBehaviour
                 {
                     estado = BossEstado.MuitoMachucado;
                 }
-
                 break;
 
-            case BossEstado.Machucado: //Metade da vida até 1/4
+            case BossEstado.Machucado: // Metade da vida até 1/4
+
+                ataqueCaveiras.SetCaveiraSpeed(4.5f);
+                ataqueCaveiras.SetCaveirasPorOnda(2);
 
                 if (bossVida.vidaAtual <= bossVida.GetVidaMaxima() / 4)
                 {
@@ -56,14 +61,15 @@ public class TristezaEstado : MonoBehaviour
 
                 bossTristeza.SetIntervaloContaminacao(0.5f);
                 bossTristeza.SetTempoContaminacao(1.3f);
-
                 break;
 
             case BossEstado.MuitoMachucado: // 1/4 pra baixo
 
+                ataqueCaveiras.SetCaveiraSpeed(5.5f);
+                ataqueCaveiras.SetCaveirasPorOnda(3);
+
                 bossTristeza.SetIntervaloContaminacao(0.35f);
                 bossTristeza.SetTempoContaminacao(1f);
-
                 break;
         }
     }
