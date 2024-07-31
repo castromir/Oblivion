@@ -10,6 +10,7 @@ public class GoToArenaFelicidade : MonoBehaviour
     public GameObject tutorial;
     private Tutorial tutorialScript;
     public static bool arenaFelicidadeFeita = false;
+    private bool podeIrPraArena = false;
 
     void Start()
     {
@@ -20,38 +21,36 @@ public class GoToArenaFelicidade : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-    }
-
-    private void OnTriggerStay2D(Collider2D other)
-    {
-        
-        
-           if (other.CompareTag("Player"))
+        if (podeIrPraArena)
+        {
+            if (Input.GetKeyDown(KeyCode.E))
             {
-                if (tutorialScript.tutorialComplete)
-                {
-                    text.gameObject.SetActive(true);
-
-
-                    if (Input.GetKeyDown(KeyCode.E))
-                    {
-                        text.gameObject.SetActive(false);
-                        SceneManager.LoadScene(3); //0 Menu,1 Hitoria, 2 Lobby, 3 Arena Felicidade, 4 Arena Tristeza, 5 Arena raiva  
-
-                }
-                }
-
+                text.gameObject.SetActive(false);
+                SceneManager.LoadScene(3); //0 Menu,1 Hitoria, 2 Lobby, 3 Arena Felicidade, 4 Arena Tristeza, 5 Arena raiva
             }
-        
+        }
     }
+    
 
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            if (tutorialScript.tutorialComplete)
+            {
+                text.gameObject.SetActive(true);
+                podeIrPraArena = true;
+            }
+        }
+    }
+  
     private void OnTriggerExit2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
             
             text.gameObject.SetActive(false);
+            podeIrPraArena = false;
         }
     }
 }
