@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TristezaEstado : MonoBehaviour
 {
@@ -26,6 +27,8 @@ public class TristezaEstado : MonoBehaviour
         if (bossVida.isDead)
         {
             StopAllCoroutines();
+            PlayerPrefs.SetInt("tristeza", 1);
+            SceneManager.LoadScene("Lobby");
             return;
         }
 
@@ -51,15 +54,15 @@ public class TristezaEstado : MonoBehaviour
                     estado = BossEstado.MuitoMachucado;
                 }
 
-                bossTristeza.SetIntervaloContaminacao(0.8f);
-                bossTristeza.SetTempoContaminacao(1.7f);
+                bossTristeza.SetIntervaloContaminacao(0.5f);
+                bossTristeza.SetTempoContaminacao(1.3f);
 
                 break;
 
             case BossEstado.MuitoMachucado: // 1/4 pra baixo
 
-                bossTristeza.SetIntervaloContaminacao(0.5f);
-                bossTristeza.SetTempoContaminacao(1.2f);
+                bossTristeza.SetIntervaloContaminacao(0.35f);
+                bossTristeza.SetTempoContaminacao(1f);
 
                 break;
         }

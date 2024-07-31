@@ -30,6 +30,8 @@ public class Menu : MonoBehaviour
         PlayerPrefs.SetInt("tutorial", 0);//Starta tutorial com um valor padrao a cada novo jogo
         PlayerPrefs.SetInt("euforiaComplete", 0);//starta euforia com um valor padrao a cada novo jogo
         PlayerPrefs.SetInt("felicidade", 0);// starta a arena da felicidade como padrao a cada novo jogo
+        PlayerPrefs.SetInt("melancoliaComplete", 0);
+        PlayerPrefs.SetInt("tristeza", 0);
         SceneManager.LoadScene(1); //0 Menu,1 Hitoria, 2 Lobby, 3 Arena Felicidade, 4 Arena Tristeza, 5 Arena raiva
     }
 

@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Tutorial : MonoBehaviour
@@ -14,7 +15,11 @@ public class Tutorial : MonoBehaviour
     public int euforiaComplete;
     public GameObject euforia;
 
+    public int melancoliaComplete;
+    public GameObject melancolia;
+
     public int arenaFelicidadeInt;
+    public int arenaTristezaInt;
 
     void Start()
     {
@@ -22,6 +27,9 @@ public class Tutorial : MonoBehaviour
         tutorialCompleteInt = PlayerPrefs.GetInt("tutorial");
         arenaFelicidadeInt = PlayerPrefs.GetInt("felicidade");
         euforiaComplete = PlayerPrefs.GetInt("euforiaComplete");
+
+        melancoliaComplete = PlayerPrefs.GetInt("melancoliaComplete");
+        arenaTristezaInt = PlayerPrefs.GetInt("tristeza");
 
 
         if (tutorialCompleteInt == 1)
@@ -36,13 +44,21 @@ public class Tutorial : MonoBehaviour
             tutorial.SetActive(false);
 
             euforia.SetActive(true);
-            
-            
-            
         }
+
+        if (arenaTristezaInt == 1)
+        {
+            melancolia.SetActive(true);
+        }
+
         if (euforiaComplete == 1)
         {
             euforia.SetActive(false);
+        }
+
+        if (melancoliaComplete == 1)
+        {
+            melancolia.SetActive(false);
         }
     }
 
@@ -102,4 +118,10 @@ public class Tutorial : MonoBehaviour
         PlayerPrefs.SetInt("euforiaComplete", 1);    
     }
 
+    public void melancoliaCompleto()
+    {
+        melancolia.SetActive(false);
+        PlayerPrefs.SetInt("melancoliaComplete", 1);
+        SceneManager.LoadScene("Creditos");
+    }
 }

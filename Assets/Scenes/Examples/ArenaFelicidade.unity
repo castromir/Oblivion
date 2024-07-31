@@ -1191,6 +1191,11 @@ PrefabInstance:
       propertyPath: m_StretchFill
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8422213676754690966, guid: a715e6498a8f8444e8af75aa518ea006,
+        type: 3}
+      propertyPath: m_AssetsPPU
+      value: 64
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a715e6498a8f8444e8af75aa518ea006, type: 3}
 --- !u!1 &590746503
@@ -4350,7 +4355,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8c50df051425b740bfe7419529601ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vidaMaxima: 200
+  vidaMaxima: 1400
   vidaAtual: 0
   isDead: 0
   bossSR: {fileID: 622907425}
@@ -8445,6 +8450,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 11ae7be3654e36642a484d606c9fd464,
         type: 3}
+    - target: {fileID: 5687907916236459188, guid: 4ba9d588ec69dab41b03c6b4921fba51,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4ba9d588ec69dab41b03c6b4921fba51, type: 3}
 --- !u!1 &1587110963 stripped
@@ -8622,31 +8632,6 @@ PrefabInstance:
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: VolumeMusica
       objectReference: {fileID: 0}
-    - target: {fileID: 5396923560524075896, guid: ffb52c0023779ec4ebf6e0151c45bbbc,
-        type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5396923560524075896, guid: ffb52c0023779ec4ebf6e0151c45bbbc,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5396923559321968324, guid: ffb52c0023779ec4ebf6e0151c45bbbc,
-        type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5396923559321968324, guid: ffb52c0023779ec4ebf6e0151c45bbbc,
-        type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5396923559321968324, guid: ffb52c0023779ec4ebf6e0151c45bbbc,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5396923559547298373, guid: ffb52c0023779ec4ebf6e0151c45bbbc,
         type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -8657,15 +8642,15 @@ PrefabInstance:
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: VolumeEfeitos
       objectReference: {fileID: 0}
-    - target: {fileID: 5396923559505842433, guid: ffb52c0023779ec4ebf6e0151c45bbbc,
+    - target: {fileID: 5396923560896913306, guid: ffb52c0023779ec4ebf6e0151c45bbbc,
         type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5396923559505842433, guid: ffb52c0023779ec4ebf6e0151c45bbbc,
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 827231428}
+    - target: {fileID: 5396923560896913306, guid: ffb52c0023779ec4ebf6e0151c45bbbc,
         type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: VoltarMenuOpcoes
       objectReference: {fileID: 0}
     - target: {fileID: 5396923559914596125, guid: ffb52c0023779ec4ebf6e0151c45bbbc,
         type: 3}
@@ -8682,15 +8667,40 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5396923560896913306, guid: ffb52c0023779ec4ebf6e0151c45bbbc,
+    - target: {fileID: 5396923560524075896, guid: ffb52c0023779ec4ebf6e0151c45bbbc,
         type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 827231428}
-    - target: {fileID: 5396923560896913306, guid: ffb52c0023779ec4ebf6e0151c45bbbc,
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5396923560524075896, guid: ffb52c0023779ec4ebf6e0151c45bbbc,
         type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: VoltarMenuOpcoes
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5396923559505842433, guid: ffb52c0023779ec4ebf6e0151c45bbbc,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5396923559505842433, guid: ffb52c0023779ec4ebf6e0151c45bbbc,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5396923559321968324, guid: ffb52c0023779ec4ebf6e0151c45bbbc,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5396923559321968324, guid: ffb52c0023779ec4ebf6e0151c45bbbc,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5396923559321968324, guid: ffb52c0023779ec4ebf6e0151c45bbbc,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ffb52c0023779ec4ebf6e0151c45bbbc, type: 3}
@@ -17075,11 +17085,16 @@ PrefabInstance:
     - target: {fileID: 7118562165350225808, guid: da43bfab3e3bed846a6a9ff4b312be37,
         type: 3}
       propertyPath: m_WasSpriteAssigned
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7118562165350225808, guid: da43bfab3e3bed846a6a9ff4b312be37,
         type: 3}
       propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7118562165350225808, guid: da43bfab3e3bed846a6a9ff4b312be37,
+        type: 3}
+      propertyPath: m_SortingOrder
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []

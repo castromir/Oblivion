@@ -28,6 +28,6 @@ public class SaiuDaArena : MonoBehaviour
     {
         // Implementar lógica para encontrar uma posição alternativa segura
         // Pode ser uma lista de pontos seguros predefinidos ou uma busca por uma área livre
-        return new Vector2(5, 0); // Exemplo de uma posição alternativa
+        return new Vector2(7, 0); // Exemplo de uma posição alternativa
     }
 }

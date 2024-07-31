@@ -11,15 +11,15 @@ public class BossTristeza : Boss
     public Transform auraPosicao;
 
     [SerializeField] private float auraScale = 4f;
-    private float auraAtaqueScale = 6f;
+    private float auraAtaqueScale = 6.2f;
 
     public GameObject avisoPrefab;
     public GameObject avisoPrefabVermelho; // Novo prefab para o aviso vermelho
     private List<Vector3> quadradosPosicoes = new List<Vector3>();
     private List<Vector3> avisoPosicoes = new List<Vector3>();
 
-    private float intervaloContaminacao = 1.5f; // Intervalo entre as mudanças de contaminação
-    private float tempoContaminacao = 2.5f; // Tempo que a contaminação permanece
+    private float intervaloContaminacao = 0.7f; // Intervalo entre as mudanças de contaminação
+    private float tempoContaminacao = 1.6f; // Tempo que a contaminação permanece
     private Coroutine contaminacaoCoroutine;
 
     private BossVida bossVida;
