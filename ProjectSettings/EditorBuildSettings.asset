@@ -24,6 +24,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Examples/ArenaTristeza.unity
     guid: f32ff92c7fcc7d14dbfdcd05a03860cb
   - enabled: 1
+    path: Assets/Scenes/Examples/ArenaRaiva.unity
+    guid: 8f6cbd14b7d4c17468796c1597a723fd
+  - enabled: 1
     path: Assets/Scenes/Examples/Creditos.unity
     guid: a0d5f449a8c7ad549aef711c2178bf38
   m_configObjects: {}
