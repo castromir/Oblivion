@@ -5,9 +5,8 @@ using UnityEngine;
 public class BossRenderer : MonoBehaviour
 {
     private Boss boss;
-
-    Animator animator;
-    int lastDirection;
+    private Animator animator;
+    private int lastDirection;
 
     private void Awake()
     {
@@ -18,22 +17,26 @@ public class BossRenderer : MonoBehaviour
     public void SetDirection(Vector2 direction, bool investida)
     {
         string[] directionArray;
-        if (investida == true)
+        if (investida)
             directionArray = boss.GetDirecoesHabilidade();
         else
             directionArray = boss.GetDirecoesEstaticas();
+
         lastDirection = DirectionToIndex(direction, 4);
 
-        animator.Play(directionArray[lastDirection]);
+        if (directionArray != null && directionArray.Length > lastDirection)
+        {
+            animator.Play(directionArray[lastDirection]);
+        }
     }
 
     public static int DirectionToIndex(Vector2 dir, int sliceCount)
     {
         Vector2 normDir = dir.normalized;
         float step = 360f / sliceCount;
-        float halfstep = step / 2;
+        float halfStep = step / 2;
         float angle = Vector2.SignedAngle(Vector2.up, normDir);
-        angle += halfstep;
+        angle += halfStep;
         if (angle < 0)
         {
             angle += 360;

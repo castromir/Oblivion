@@ -43,13 +43,13 @@ public class BossTristeza : Boss
         }
 
         // Definir posições dos quadrados (losangos) para auras
-        quadradosPosicoes.Add(new Vector3(-8.5f, 0.5f, 0f)); // Ajuste de acordo com a posição real dos quadrados na sua arena
+        quadradosPosicoes.Add(new Vector3(-8.5f, 0.5f, 0f)); 
         quadradosPosicoes.Add(new Vector3(-0.25f, 4.5f, 0f));
         quadradosPosicoes.Add(new Vector3(8f, 0.25f, 0f));
         quadradosPosicoes.Add(new Vector3(-0.05f, -3.8f, 0f));
 
         // Definir posições dos avisos
-        avisoPosicoes.Add(new Vector3(-8.5f, 0.5f, 0f)); // Ajuste de acordo com a posição real dos avisos na sua arena
+        avisoPosicoes.Add(new Vector3(-8.5f, 0.5f, 0f)); 
         avisoPosicoes.Add(new Vector3(-0.25f, 4.5f, 0f));
         avisoPosicoes.Add(new Vector3(8f, 0.25f, 0f));
         avisoPosicoes.Add(new Vector3(-0.05f, -3.8f, 0f));
@@ -160,7 +160,7 @@ public class BossTristeza : Boss
             aviso3.transform.localScale = new Vector3(8f, 8f, 8f);
 
             // Esperar um tempo antes de instanciar as auras
-            yield return new WaitForSeconds(2f); // Ajuste o tempo do aviso conforme necessário
+            yield return new WaitForSeconds(2f); 
 
             // Instanciar as auras nos quadrados selecionados
             GameObject aura1 = Instantiate(auraPrefab, quadradosPosicoes[indices[0]], Quaternion.identity);
