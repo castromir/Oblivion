@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class LaminaDeFogo : MonoBehaviour
 {
-    public float velocidade = 10f;
+    public float velocidade = 5f;
     private Vector2 direcao;
 
     public void IniciarAtaque(Vector3 posicaoPlayer)

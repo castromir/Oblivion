@@ -33,6 +33,12 @@ public class RaivaEstado : MonoBehaviour
 
     void Update()
     {
+        if (bossVida.isDead)
+        {
+            StopAllCoroutines();
+            return;
+        }
+
         if (currentFase == BossFase.Fase1 && bossVida.vidaAtual <= bossVida.GetVidaMaxima() / 2)
         {
             // Transição para a Fase 2
@@ -94,19 +100,21 @@ public class RaivaEstado : MonoBehaviour
                 }
             }
 
-            yield return new WaitForSeconds(1f); 
+            yield return new WaitForSeconds(0.5f);
         }
     }
 
     private IEnumerator MoveToPlayerAndAttack()
     {
         isMovingToPlayer = true;
-        Vector3 playerPosition = bossRaiva.player.transform.position;
-        while (Vector2.Distance(transform.position, playerPosition) > 1f)
+        Transform playerTransform = bossRaiva.player.transform;
+
+        while (Vector2.Distance(transform.position, playerTransform.position) > 1.5f)
         {
-            transform.position = Vector2.MoveTowards(transform.position, playerPosition, bossRaiva.velocidade * Time.deltaTime);
+            transform.position = Vector2.MoveTowards(transform.position, playerTransform.position, bossRaiva.GetVelocidade() * Time.deltaTime);
             yield return null;
         }
+
         bossRaiva.AtaquePunho();
         isMovingToPlayer = false;
     }

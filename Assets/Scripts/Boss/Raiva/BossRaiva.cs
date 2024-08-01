@@ -5,19 +5,21 @@ using UnityEngine;
 public class BossRaiva : Boss
 {
     public GameObject player;
+    private BossVida bossVida;
 
-    public float velocidade = 5f;
-    public float velocidadeInvestida = 20f; 
-    public float tempoDeRecargaPunho = 2f;
-    public float tempoDeRecargaLaminasDeFogo = 3f;
-    public float tempoDeRecargaInvestida = 5f;
-    public float delayInvestida = 1f; 
+    private float velocidade = 2.5f;
+    private float velocidadeInvestida = 8f;
+    private float tempoDeRecargaPunho = 2f;
+    private float tempoDeRecargaLaminasDeFogo = 3f;
+    private float tempoDeRecargaInvestida = 12f;
+    private float delayInvestida = 1f;
     private float proximoPunho;
     private float proximasLaminasDeFogo;
     private float proximaInvestida;
     private Transform playerTransform;
 
     public GameObject laminaDeFogoPrefab;
+    public GameObject avisoPrefab; // Prefab do aviso de exclamação
 
     private BossRenderer bossRenderer;
     private bool isInvesting = false;
@@ -25,8 +27,13 @@ public class BossRaiva : Boss
     public Vector2 pontoInvestida1;
     public Vector2 pontoInvestida2;
 
+    public float distanciaEntreAvisos = 5f; // Distância entre os avisos
+
+    private List<GameObject> avisos = new List<GameObject>(); // Lista para armazenar os avisos
+
     void Start()
     {
+        bossVida = GetComponent<BossVida>();
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
         proximoPunho = Time.time;
         proximasLaminasDeFogo = Time.time;
@@ -36,6 +43,11 @@ public class BossRaiva : Boss
 
     void Update()
     {
+        if (bossVida.isDead)
+        {
+            DesativarBoss();
+        }
+
         if (!isInvesting)
         {
             // Adiciona movimentação básica para visualização de animação
@@ -52,7 +64,7 @@ public class BossRaiva : Boss
     public bool IsPlayerClose()
     {
         float distancia = Vector2.Distance(transform.position, player.transform.position);
-        return distancia < 6f; 
+        return distancia < 6f;
     }
 
     public bool IsPunhoOnCooldown()
@@ -75,6 +87,20 @@ public class BossRaiva : Boss
     {
         if (laminaDeFogoPrefab != null)
         {
+            StartCoroutine(LancarLaminasDeFogo());
+        }
+        else
+        {
+            Debug.LogError("laminaDeFogoPrefab não está atribuído.");
+        }
+
+        proximasLaminasDeFogo = Time.time + tempoDeRecargaLaminasDeFogo;
+    }
+
+    private IEnumerator LancarLaminasDeFogo()
+    {
+        for (int i = 0; i < 3; i++)
+        {
             GameObject laminaDeFogo = Instantiate(laminaDeFogoPrefab, transform.position, Quaternion.identity);
 
             LaminaDeFogo laminaScript = laminaDeFogo.GetComponent<LaminaDeFogo>();
@@ -86,13 +112,9 @@ public class BossRaiva : Boss
             {
                 Debug.LogError("LaminaDeFogo script não encontrado no prefab.");
             }
-        }
-        else
-        {
-            Debug.LogError("laminaDeFogoPrefab não está atribuído.");
-        }
 
-        proximasLaminasDeFogo = Time.time + tempoDeRecargaLaminasDeFogo;
+            yield return new WaitForSeconds(0.9f);
+        }
     }
 
     public bool IsInvestidaOnCooldown()
@@ -121,7 +143,23 @@ public class BossRaiva : Boss
             pontoFinal = pontoInvestida1;
         }
 
+        CriarAvisos(pontoInicial, pontoFinal); // Criar avisos antes da investida
+
         StartCoroutine(MovimentarParaPonto(pontoInicial, pontoFinal));
+    }
+
+    private void CriarAvisos(Vector2 pontoInicial, Vector2 pontoFinal)
+    {
+        Vector2 direcao = (pontoFinal - pontoInicial).normalized;
+        float distancia = Vector2.Distance(pontoInicial, pontoFinal);
+        int numeroDeAvisos = Mathf.FloorToInt(distancia / 1.5f);
+
+        for (int i = 0; i <= numeroDeAvisos; i++)
+        {
+            Vector2 posicaoAviso = pontoInicial + direcao * (i * 2);
+            GameObject aviso = Instantiate(avisoPrefab, posicaoAviso, Quaternion.identity);
+            avisos.Add(aviso);
+        }
     }
 
     private IEnumerator MovimentarParaPonto(Vector2 pontoInicial, Vector2 pontoFinal)
@@ -149,6 +187,17 @@ public class BossRaiva : Boss
         isInvesting = false;
         proximaInvestida = Time.time + tempoDeRecargaInvestida;
         Debug.Log("Investida Concluída");
+
+        DestruirAvisos(); // Destruir avisos após a investida
+    }
+
+    private void DestruirAvisos()
+    {
+        foreach (GameObject aviso in avisos)
+        {
+            Destroy(aviso);
+        }
+        avisos.Clear();
     }
 
     public void IncreaseSpeed()
@@ -161,6 +210,23 @@ public class BossRaiva : Boss
         tempoDeRecargaPunho *= 0.5f; // Reduzir tempo de recarga pela metade
         tempoDeRecargaLaminasDeFogo *= 0.5f;
         tempoDeRecargaInvestida *= 0.5f;
+    }
+
+    public void DesativarBoss()
+    {
+        // Desative todos os componentes específicos do Boss da Raiva
+        StopAllCoroutines(); // Para todas as corrotinas em andamento
+        isInvesting = false;
+
+        // Desative componentes ou scripts adicionais, se necessário
+        bossRenderer.enabled = false;
+
+        // Se houver outros componentes específicos do Boss da Raiva, desative-os aqui
+    }
+
+    public float GetVelocidade()
+    {
+        return velocidade;
     }
 
     public override string[] GetDirecoesEstaticas()
