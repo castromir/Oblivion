@@ -4355,7 +4355,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8c50df051425b740bfe7419529601ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vidaMaxima: 1400
+  vidaMaxima: 200
   vidaAtual: 0
   isDead: 0
   bossSR: {fileID: 622907425}
@@ -4373,7 +4373,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bossSR: {fileID: 622907425}
-  avisoCor: {r: 1, g: 0, b: 0, a: 1}
+  avisoCor: {r: 1, g: 0.49108696, b: 0, a: 1}
   avisoDuracao: 1
 --- !u!95 &622907433
 Animator:
@@ -4568,6 +4568,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 164004487}
   safeSpawnPoint: {x: 0, y: 0}
+  alternateSafeSpawnPoint: {x: 7, y: 0}
   obstacleLayer:
     serializedVersion: 2
     m_Bits: 512
@@ -8474,6 +8475,10 @@ PrefabInstance:
     - target: {fileID: 1063933678, guid: f6bc3a69ad9adb04f9ed3685640d61bb, type: 3}
       propertyPath: m_Name
       value: avisoPrefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 1063933678, guid: f6bc3a69ad9adb04f9ed3685640d61bb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1063933679, guid: f6bc3a69ad9adb04f9ed3685640d61bb, type: 3}
       propertyPath: m_LocalPosition.x
@@ -16863,6 +16868,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 8fd0f6fc739e78c4eadb481cc7d3ff4d,
         type: 3}
+    - target: {fileID: 1246958761141379441, guid: c2c536102c0425942a4b5b6ac5fba723,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0.89411765
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246958761141379441, guid: c2c536102c0425942a4b5b6ac5fba723,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.3454351
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c2c536102c0425942a4b5b6ac5fba723, type: 3}
 --- !u!1001 &5790803648633772854
@@ -17116,31 +17131,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.75
       objectReference: {fileID: 0}
-    - target: {fileID: 5223191402041878470, guid: da43bfab3e3bed846a6a9ff4b312be37,
-        type: 3}
-      propertyPath: m_Offset.y
-      value: -0.0054910183
-      objectReference: {fileID: 0}
-    - target: {fileID: 5223191402041878470, guid: da43bfab3e3bed846a6a9ff4b312be37,
-        type: 3}
-      propertyPath: m_Size.y
-      value: 0.1311687
-      objectReference: {fileID: 0}
-    - target: {fileID: 5223191402041878470, guid: da43bfab3e3bed846a6a9ff4b312be37,
-        type: 3}
-      propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 0.17
-      objectReference: {fileID: 0}
-    - target: {fileID: 5223191402041878470, guid: da43bfab3e3bed846a6a9ff4b312be37,
-        type: 3}
-      propertyPath: m_SpriteTilingProperty.newSize.y
-      value: 0.17
-      objectReference: {fileID: 0}
-    - target: {fileID: 5223191402041878470, guid: da43bfab3e3bed846a6a9ff4b312be37,
-        type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7118562165350225808, guid: da43bfab3e3bed846a6a9ff4b312be37,
         type: 3}
       propertyPath: m_Sprite
@@ -17165,6 +17155,31 @@ PrefabInstance:
     - target: {fileID: 7118562165350225808, guid: da43bfab3e3bed846a6a9ff4b312be37,
         type: 3}
       propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5223191402041878470, guid: da43bfab3e3bed846a6a9ff4b312be37,
+        type: 3}
+      propertyPath: m_Offset.y
+      value: -0.0054910183
+      objectReference: {fileID: 0}
+    - target: {fileID: 5223191402041878470, guid: da43bfab3e3bed846a6a9ff4b312be37,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 0.1311687
+      objectReference: {fileID: 0}
+    - target: {fileID: 5223191402041878470, guid: da43bfab3e3bed846a6a9ff4b312be37,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 0.17
+      objectReference: {fileID: 0}
+    - target: {fileID: 5223191402041878470, guid: da43bfab3e3bed846a6a9ff4b312be37,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.y
+      value: 0.17
+      objectReference: {fileID: 0}
+    - target: {fileID: 5223191402041878470, guid: da43bfab3e3bed846a6a9ff4b312be37,
+        type: 3}
+      propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []

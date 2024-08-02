@@ -21,14 +21,14 @@ public class LaminaDeFogo : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("LaminaDeFogo colidiu com: " + collision.gameObject.name);
+        //Debug.Log("LaminaDeFogo colidiu com: " + collision.gameObject.name);
         if (collision.gameObject.CompareTag("Player"))
         {
             PlayerVida playerVida = collision.gameObject.GetComponent<PlayerVida>();
             if (playerVida != null)
             {
                 playerVida.ReceberDano();
-                Debug.Log("Lâmina de Fogo colidiu com o player e causou dano.");
+               //Debug.Log("Lâmina de Fogo colidiu com o player e causou dano.");
             }
             Destroy(gameObject);
         }

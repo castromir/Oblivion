@@ -8,6 +8,7 @@ public class RaivaEstado : MonoBehaviour
     public BossVida bossVida;
 
     private BossFase currentFase = BossFase.Fase1;
+    private BossEstado currentEstado = BossEstado.Padrao;
     private bool isMovingToPlayer = false;
 
     private enum BossFase
@@ -19,7 +20,7 @@ public class RaivaEstado : MonoBehaviour
     private enum BossEstado
     {
         Padrao,
-        AtaquePunho,
+        AtaqueVortex,
         AtaqueLaminasDeFogo,
         AtaqueInvestida
     }
@@ -43,8 +44,8 @@ public class RaivaEstado : MonoBehaviour
         {
             // Transição para a Fase 2
             currentFase = BossFase.Fase2;
-            bossRaiva.IncreaseSpeed(); // Supondo que esse método aumente a velocidade do boss
-            bossRaiva.ReduceCooldowns(); // Supondo que esse método reduza os tempos de recarga
+            bossRaiva.IncreaseSpeed();
+            bossRaiva.ReduceCooldowns();
         }
     }
 
@@ -54,19 +55,19 @@ public class RaivaEstado : MonoBehaviour
         {
             if (currentFase == BossFase.Fase1)
             {
-                if (!isMovingToPlayer && bossRaiva.IsPlayerClose() && !bossRaiva.IsPunhoOnCooldown())
+                if (!isMovingToPlayer && bossRaiva.IsPlayerClose() && !bossRaiva.IsVortexOnCooldown())
                 {
-                    Debug.Log("Fase 1: Ataque de Punho");
+                    //Debug.Log("Fase 1: Ataque de Vórtice");
                     StartCoroutine(MoveToPlayerAndAttack());
                 }
                 else if (!bossRaiva.IsPlayerClose() && !bossRaiva.IsLaminasDeFogoOnCooldown())
                 {
-                    Debug.Log("Fase 1: Ataque de Lâminas de Fogo");
+                    //Debug.Log("Fase 1: Ataque de Lâminas de Fogo");
                     bossRaiva.AtaqueLaminasDeFogo();
                 }
                 else if (!bossRaiva.IsInvestidaOnCooldown())
                 {
-                    Debug.Log("Fase 1: Ataque de Investida");
+                    //Debug.Log("Fase 1: Ataque de Investida");
                     bossRaiva.AtaqueInvestida();
                 }
             }
@@ -77,9 +78,9 @@ public class RaivaEstado : MonoBehaviour
                 switch (randomAttack)
                 {
                     case 0:
-                        if (!isMovingToPlayer && !bossRaiva.IsPunhoOnCooldown())
+                        if (!isMovingToPlayer && !bossRaiva.IsVortexOnCooldown())
                         {
-                            Debug.Log("Fase 2: Ataque de Punho");
+                            Debug.Log("Fase 2: Ataque de Vórtice");
                             StartCoroutine(MoveToPlayerAndAttack());
                         }
                         break;
@@ -115,7 +116,7 @@ public class RaivaEstado : MonoBehaviour
             yield return null;
         }
 
-        bossRaiva.AtaquePunho();
+        bossRaiva.AtaqueVortex();
         isMovingToPlayer = false;
     }
 }

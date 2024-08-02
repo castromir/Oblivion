@@ -1853,6 +1853,16 @@ PrefabInstance:
       propertyPath: feiticos.Array.data[1].estado
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4520690331217355740, guid: 5e2a82902b6ea4c0b9b652322ffadcff,
+        type: 3}
+      propertyPath: feiticos.Array.data[1].nome
+      value: Euforia
+      objectReference: {fileID: 0}
+    - target: {fileID: 4520690331217355740, guid: 5e2a82902b6ea4c0b9b652322ffadcff,
+        type: 3}
+      propertyPath: feiticos.Array.data[0].nome
+      value: Teleporte
+      objectReference: {fileID: 0}
     - target: {fileID: 3339481644051735614, guid: 5e2a82902b6ea4c0b9b652322ffadcff,
         type: 3}
       propertyPath: m_Sprite

@@ -7,38 +7,53 @@ public class BossRaiva : Boss
     public GameObject player;
     private BossVida bossVida;
 
-    private float velocidade = 2.5f;
-    private float velocidadeInvestida = 8f;
-    private float tempoDeRecargaPunho = 2f;
+    private float velocidade = 1.5f;
+    private float velocidadeInvestida = 14f;
+    private float tempoDeRecargaVortex = 10f;
     private float tempoDeRecargaLaminasDeFogo = 3f;
     private float tempoDeRecargaInvestida = 12f;
     private float delayInvestida = 1f;
-    private float proximoPunho;
+    private float proximoVortex;
     private float proximasLaminasDeFogo;
     private float proximaInvestida;
     private Transform playerTransform;
 
+    public GameObject vortexDeFogoPrefab;
     public GameObject laminaDeFogoPrefab;
-    public GameObject avisoPrefab; // Prefab do aviso de exclamação
+    public GameObject avisoPrefab;
 
     private BossRenderer bossRenderer;
     private bool isInvesting = false;
+    private bool isAttackingVortex = false;
 
     public Vector2 pontoInvestida1;
     public Vector2 pontoInvestida2;
 
-    public float distanciaEntreAvisos = 5f; // Distância entre os avisos
+    public float distanciaEntreAvisos = 5f;
 
-    private List<GameObject> avisos = new List<GameObject>(); // Lista para armazenar os avisos
+    private List<GameObject> avisos = new List<GameObject>();
 
     void Start()
     {
         bossVida = GetComponent<BossVida>();
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
-        proximoPunho = Time.time;
+        bossRenderer = GetComponent<BossRenderer>();
+        Reiniciar();
+    }
+
+    void OnEnable()
+    {
+        Reiniciar();
+    }
+
+    void Reiniciar()
+    {
+        proximoVortex = Time.time;
         proximasLaminasDeFogo = Time.time;
         proximaInvestida = Time.time;
-        bossRenderer = GetComponent<BossRenderer>();
+        isInvesting = false;
+        isAttackingVortex = false;
+        avisos.Clear();
     }
 
     void Update()
@@ -46,17 +61,20 @@ public class BossRaiva : Boss
         if (bossVida.isDead)
         {
             DesativarBoss();
+            return;
         }
 
-        if (!isInvesting)
+        if (!isInvesting && !isAttackingVortex)
         {
-            // Adiciona movimentação básica para visualização de animação
-            Vector2 direction = (playerTransform.position - transform.position).normalized;
-            transform.position = Vector2.MoveTowards(transform.position, playerTransform.position, velocidade * Time.deltaTime);
-
-            if (direction != Vector2.zero)
+            if (!IsVortexOnCooldown())
             {
-                bossRenderer.SetDirection(direction, false);
+                Vector2 direction = (playerTransform.position - transform.position).normalized;
+                transform.position = Vector2.MoveTowards(transform.position, playerTransform.position, velocidade * Time.deltaTime);
+
+                if (direction != Vector2.zero)
+                {
+                    bossRenderer.SetDirection(direction, false);
+                }
             }
         }
     }
@@ -67,15 +85,32 @@ public class BossRaiva : Boss
         return distancia < 6f;
     }
 
-    public bool IsPunhoOnCooldown()
+    public bool IsVortexOnCooldown()
     {
-        return Time.time < proximoPunho;
+        return Time.time < proximoVortex;
     }
 
-    public void AtaquePunho()
+    public void AtaqueVortex()
     {
-        Debug.Log("Ataque de Punho");
-        proximoPunho = Time.time + tempoDeRecargaPunho;
+        if (isInvesting || isAttackingVortex) return;
+        if (vortexDeFogoPrefab != null)
+        {
+            isAttackingVortex = true;
+            GameObject vortex = Instantiate(vortexDeFogoPrefab, transform.position, Quaternion.identity);
+            StartCoroutine(EncerrarVortex());
+        }
+        else
+        {
+            Debug.LogError("vortexDeFogoPrefab não está atribuído.");
+        }
+
+        proximoVortex = Time.time + tempoDeRecargaVortex;
+    }
+
+    private IEnumerator EncerrarVortex()
+    {
+        yield return new WaitForSeconds(tempoDeRecargaVortex);
+        isAttackingVortex = false;
     }
 
     public bool IsLaminasDeFogoOnCooldown()
@@ -85,6 +120,7 @@ public class BossRaiva : Boss
 
     public void AtaqueLaminasDeFogo()
     {
+        if (isInvesting || isAttackingVortex) return;
         if (laminaDeFogoPrefab != null)
         {
             StartCoroutine(LancarLaminasDeFogo());
@@ -124,14 +160,13 @@ public class BossRaiva : Boss
 
     public void AtaqueInvestida()
     {
-        Debug.Log("Preparando para Investida");
+        if (isInvesting || isAttackingVortex) return;
 
         isInvesting = true;
 
         Vector2 pontoInicial;
         Vector2 pontoFinal;
 
-        // Determina qual ponto está mais próximo do boss
         if (Vector2.Distance(transform.position, pontoInvestida1) < Vector2.Distance(transform.position, pontoInvestida2))
         {
             pontoInicial = pontoInvestida1;
@@ -143,7 +178,7 @@ public class BossRaiva : Boss
             pontoFinal = pontoInvestida1;
         }
 
-        CriarAvisos(pontoInicial, pontoFinal); // Criar avisos antes da investida
+        CriarAvisos(pontoInicial, pontoFinal);
 
         StartCoroutine(MovimentarParaPonto(pontoInicial, pontoFinal));
     }
@@ -164,18 +199,13 @@ public class BossRaiva : Boss
 
     private IEnumerator MovimentarParaPonto(Vector2 pontoInicial, Vector2 pontoFinal)
     {
-        // Move rapidamente para o ponto inicial
         while (Vector2.Distance(transform.position, pontoInicial) > 0.1f)
         {
             transform.position = Vector2.MoveTowards(transform.position, pontoInicial, velocidadeInvestida * Time.deltaTime);
             yield return null;
         }
 
-        // Pequeno delay antes de iniciar a investida
         yield return new WaitForSeconds(delayInvestida);
-
-        // Inicia a investida para o ponto final
-        Debug.Log("Iniciando Investida");
 
         while (Vector2.Distance(transform.position, pontoFinal) > 0.1f)
         {
@@ -183,12 +213,10 @@ public class BossRaiva : Boss
             yield return null;
         }
 
-        // Conclui a investida
         isInvesting = false;
         proximaInvestida = Time.time + tempoDeRecargaInvestida;
-        Debug.Log("Investida Concluída");
 
-        DestruirAvisos(); // Destruir avisos após a investida
+        DestruirAvisos();
     }
 
     private void DestruirAvisos()
@@ -202,26 +230,22 @@ public class BossRaiva : Boss
 
     public void IncreaseSpeed()
     {
-        velocidade *= 1.5f; // Aumentar a velocidade em 50%
+        velocidade *= 1.5f;
     }
 
     public void ReduceCooldowns()
     {
-        tempoDeRecargaPunho *= 0.5f; // Reduzir tempo de recarga pela metade
+        tempoDeRecargaVortex *= 0.5f;
         tempoDeRecargaLaminasDeFogo *= 0.5f;
         tempoDeRecargaInvestida *= 0.5f;
     }
 
     public void DesativarBoss()
     {
-        // Desative todos os componentes específicos do Boss da Raiva
-        StopAllCoroutines(); // Para todas as corrotinas em andamento
+        StopAllCoroutines();
         isInvesting = false;
-
-        // Desative componentes ou scripts adicionais, se necessário
+        isAttackingVortex = false;
         bossRenderer.enabled = false;
-
-        // Se houver outros componentes específicos do Boss da Raiva, desative-os aqui
     }
 
     public float GetVelocidade()

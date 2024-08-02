@@ -26,7 +26,11 @@ public class BossRenderer : MonoBehaviour
 
         if (directionArray != null && directionArray.Length > lastDirection)
         {
-            animator.Play(directionArray[lastDirection]);
+            string animationName = directionArray[lastDirection];
+            if (!animator.GetCurrentAnimatorStateInfo(0).IsName(animationName))
+            {
+                animator.Play(animationName);
+            }
         }
     }
 
